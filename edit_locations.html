@@ -1,8 +1,3 @@
-{% extends 'layout.html' %}
-
-{% block content %}
-<!-- HTML -->
-
 <!-- Plot From GeoTab Modal -->
 <div class="modal fade" id="geotab-modal" tabindex="-1" role="dialog" aria-labelledby="geotab-modal" aria-hidden="true">.
     <div class="modal-dialog modal-dialog-centered">
@@ -125,14 +120,13 @@
 <script src="https://unpkg.com/@turf/turf"></script>
 
 <!-- Load Css -->
-<link href="{{ url_for('static', filename='css/templates/edit_locations.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', filename='css/map.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', filename='css/calendar.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', filename='css/card.css') }}" rel="stylesheet"/>
+<link href="css/edit_locations.css" rel="stylesheet"/>
+<link href="css/map.css" rel="stylesheet"/>
+<link href="css/calendar.css" rel="stylesheet"/>
+<link href="css/card.css" rel="stylesheet"/>
 
 <!-- Load Js -->
-<script src="{{ url_for('static', filename='js/mapLogic.js') }}"></script>
-<script src="{{ url_for('static', filename='js/templates/edit_locations.js') }}"></script>
-<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
-<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
-{% endblock %}
+<script src="js/mapLogic.js"></script>
+<script src="js/edit_locations.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/cards.js"></script>

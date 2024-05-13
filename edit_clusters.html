@@ -1,8 +1,3 @@
-{% extends 'layout.html' %}
-
-{% block content %}
-<!-- HTML -->
-
 <div class="row" id="main-content">
     <div class="col-6 column" id="map-and-buttons-column">
         <!-- Upload Buttons-->
@@ -128,12 +123,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Load Css -->
-<link href="{{ url_for('static', filename='css/templates/edit_clusters.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', filename='css/map.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', filename='css/card.css') }}" rel="stylesheet"/>
+<link href="css/edit_clusters.css" rel="stylesheet"/>
+<link href="css/map.css" rel="stylesheet"/>
+<link href="css/card.css" rel="stylesheet"/>
 
 <!-- Load Js -->
-<script src="{{ url_for('static', filename='js/mapLogic.js') }}"></script>
-<script src="{{ url_for('static', filename='js/templates/edit_clusters.js') }}"></script>
-<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
-{% endblock %}
+<script src="js/mapLogic.js"></script>
+<script src="js/edit_clusters.js"></script>
+<script src="js/cards.js"></script>

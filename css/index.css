@@ -1,4 +1,4 @@
-@import url('../app_variables.css');
+@import url('app_variables.css');
 
 .dark-mode {
     background-color: #ffffff; 

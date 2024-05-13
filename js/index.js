@@ -68,13 +68,19 @@ function setPageName() {
 }
 
 function loadBlockContent(htmlFile) {
-    fetch(htmlFile)
-        .then(response => response.text())
+    fetch(file)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
         .then(html => {
-            document.getElementById("block-content").innerHTML = html;
+            // Render the HTML content into a container element
+            document.getElementById('block-content').innerHTML = html;
         })
         .catch(error => {
-            console.error("Error loading block content:", error);
+            console.error('Error fetching HTML content:', error);
         });
 }
 

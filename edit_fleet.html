@@ -1,8 +1,3 @@
-{% extends 'layout.html' %}
-
-{% block content %}
-<!-- HTML -->
-
 <div class="col" id="main-content">
     <div class="row" id="edit-fleet-upload-download-buttons-row">
         <input type="file" id="input-upload-fleet"/>
@@ -291,10 +286,9 @@
 <script src="https://unpkg.com/@turf/turf"></script>
 
 <!-- Load Css -->
-<link href="{{ url_for('static', filename='css/templates/edit_fleet.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', filename='css/card.css') }}" rel="stylesheet"/>
+<link href="css/edit_fleet.css" rel="stylesheet"/>
+<link href="css/card.css" rel="stylesheet"/>
 
 <!-- Load Js -->
-<script src="{{ url_for('static', filename='js/templates/edit_fleet.js') }}"></script>
-<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
-{% endblock %}
+<script src="js/edit_fleet.js"></script>
+<script src="js/cards.js"></script>

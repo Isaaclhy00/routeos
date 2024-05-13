@@ -1,4 +1,4 @@
-@import url(../static/css/app_variables.css);
+@import url(app_variables.css);
         
 .loading-screen {
     position: fixed;
