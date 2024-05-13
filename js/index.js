@@ -68,6 +68,31 @@ function setPageName() {
     document.getElementById('page-name').textContent = pageName;
 }
 
+function handleRouting() {
+    // Get the current path from the URL
+    const path = window.location.pathname;
+
+    // Check the path and load content accordingly
+    if (path === '/') {
+        loadBlockContent('home_page.html');
+    } else if (path === '/simple_optimization') {
+        loadBlockContent('simple_optimization.html');
+    } else if (path === '/free_optimization') {
+        loadBlockContent('free_optimization.html');
+    } else if (path === '/edit_fleet') {
+        loadBlockContent('edit_fleet.html');
+    } else if (path === '/edit_locations') {
+        loadBlockContent('edit_locations.html');
+    } else if (path === '/edit_clusters') {
+        loadBlockContent('edit_clusters.html');
+    } else if (path === '/guide') {
+        loadBlockContent('guide.html');
+    } else {
+        // Handle unknown paths or 404
+        loadBlockContent('404.html');
+    }
+}
+
 function loadBlockContent(htmlFile) {
     fetch(file)
         .then(response => {
