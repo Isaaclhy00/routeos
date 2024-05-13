@@ -258,14 +258,13 @@ $(document).ready(function () {
                 $('#edit-vehicle-location-tonnage-modal').modal('show');
                 
                 $('#btn-confirm-edit-vehicle-location-tonnage').on('click', function() {
-                    vehicle['Route_ID'] = document.getElementById('input-edit-vehicle-route').value; 
-                    vehicle['Current_Lat'] = document.getElementById('input-edit-vehicle-location-lat').value; 
-                    vehicle['Current_Long'] = document.getElementById('input-edit-vehicle-location-long').value; 
-                    vehicle['Current_Tonnage'] = document.getElementById('input-edit-vehicle-tonnage').value; 
-                    vehicle['Manpower'] = document.getElementById('input-edit-vehicle-manpower').value; 
+                    vehicle['Route_ID'] = parseInt(document.getElementById('input-edit-vehicle-route').value); 
+                    vehicle['Current_Lat'] = parseFloat(document.getElementById('input-edit-vehicle-location-lat').value); 
+                    vehicle['Current_Long'] = parseFloat(document.getElementById('input-edit-vehicle-location-long').value); 
+                    vehicle['Current_Tonnage'] = parseInt(document.getElementById('input-edit-vehicle-tonnage').value); 
+                    vehicle['Manpower'] = parseInt(document.getElementById('input-edit-vehicle-manpower').value); 
                     vehicle['Start_Time'] = document.getElementById('input-edit-vehicle-start-time').value; 
                     vehicle['End_Time'] = document.getElementById('input-edit-vehicle-end-time').value; 
-                    
                     $('#edit-vehicle-location-tonnage-modal').modal('hide');
                     updateRunOptimizationVehicleCardContent(card)
                 });
@@ -646,11 +645,9 @@ $(document).ready(function () {
 
                 $('#edit-CP-vehType-tonnage-modal').modal('show');
                 $('#btn-confirm-edit-CP-vehType-tonnage').on('click', function() {
-                    console.log("saving data");
-                    point['Ideal_Vehicle_Type'] = document.getElementById('input-edit-CP-vehType').value; 
-                    point['Tonnage_kg'] = document.getElementById('input-edit-CP-tonnage').value; 
+                    // point['Ideal_Vehicle_Type'] = document.getElementById('input-edit-CP-vehType').value; 
+                    point['Tonnage_kg'] = parseInt(document.getElementById('input-edit-CP-tonnage').value); 
                     point['Vehicle_Type_Allowed'] = pointVehTypeAllowed;
-                    
                     $('#edit-CP-vehType-tonnage-modal').modal('hide');
                     updateRunOptimizationCPCardContent(card);
                 });
@@ -869,6 +866,7 @@ $(document).ready(function () {
         loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 0.6)';
         loadingAnimation.style.display = 'flex';
 
+        console.log(data);
         fetch('/solve', {
             method: 'POST',
             headers: {

@@ -31,7 +31,7 @@
         <div class="guide-section" id="reset=all-data-section">
             <div class="row guide-section-top-row">
                 <div class="col-auto">
-                    <div class="guide-section-title">Reset All Data</div>
+                    <div class="guide-section-title"><a href="/reset_all_data">Reset All Data</a></div>
                 </div>
             </div>
 
@@ -68,8 +68,16 @@
                 <div class="guide-section-subtitle">Break Route</div>
                 <div class="guide-section-content">
                     <div class="guide-section-content-text">To choose the Break Route scenario, ensure the slider is at the "Break Route" position.</div>
-                    <div class="centered-image">
+                    <!-- <div class="centered-image">
                         <img src="../static/images/simple_optimization_screenshots/simple-optimization-slider-breakroute.jpg" alt="simple-optimization-slider-breakroute">
+                    </div> -->
+                    <div class="row" id="solver-config-mode">
+                        <div id="solver-config-mode-slider" class="slider">
+                            <div class="option solver-config-mode-option  option-selected" id="solver-config-mode-breakroute" data-mode="breakroute">Break Route</div>
+                            <div class="option solver-config-mode-option" id="solver-config-mode-breakdown" data-mode="breakdown">Break Down</div>
+                            <div class="option solver-config-mode-option" id="solver-config-mode-reshuffle" data-mode="reshuffle">Reshuffle</div>
+                            <div id="indicator-breakroute"></div>
+                        </div>
                     </div>
                     <div class="guide-section-content-text">Routes to be broken go in the middle, Routes to optimize go on the right, Routes not to be considered by the optimizer stay 
                         on the left, in the example below, R16 points will be broken into the R17, R18, and R20.</div>
@@ -103,8 +111,16 @@
                 <div class="guide-section-subtitle">Break Down</div>
                 <div class="guide-section-content">
                     <div class="guide-section-content-text">To choose the Break Down scenario, ensure the slider is at the "Break Down" position.</div>
-                    <div class="centered-image">
+                    <!-- <div class="centered-image">
                         <img src="../static/images/simple_optimization_screenshots/simple-optimization-slider-breakdown.jpg" alt="simple-optimization-slider-breakroute">
+                    </div> -->
+                    <div class="row" id="solver-config-mode">
+                        <div id="solver-config-mode-slider" class="slider">
+                            <div class="option solver-config-mode-option" id="solver-config-mode-breakroute" data-mode="breakroute">Break Route</div>
+                            <div class="option solver-config-mode-option option-selected" id="solver-config-mode-breakdown" data-mode="breakdown">Break Down</div>
+                            <div class="option solver-config-mode-option" id="solver-config-mode-reshuffle" data-mode="reshuffle">Reshuffle</div>
+                            <div id="indicator-breakdown"></div>
+                        </div>
                     </div>
                     <div class="guide-section-content-text">Routes to be broken go in the middle, Routes to optimize go on the right, Routes not to be considered by the optimizer stay 
                         on the left, in the example below, R16 points will be broken into the R17, R18, and R20.</div>
@@ -138,8 +154,16 @@
                 <div class="guide-section-subtitle">Reshuffle</div>
                 <div class="guide-section-content">
                     <div class="guide-section-content-text">To choose the Reshuffle scenario, ensure the slider is at the "Reshuffle" position.</div>
-                    <div class="centered-image">
+                    <!-- <div class="centered-image">
                         <img src="../static/images/simple_optimization_screenshots/simple-optimization-slider-reshuffle.jpg" alt="simple-optimization-slider-reshuffle">
+                    </div> -->
+                    <div class="row" id="solver-config-mode">
+                        <div id="solver-config-mode-slider" class="slider">
+                            <div class="option solver-config-mode-option" id="solver-config-mode-breakroute" data-mode="breakroute">Break Route</div>
+                            <div class="option solver-config-mode-option" id="solver-config-mode-breakdown" data-mode="breakdown">Break Down</div>
+                            <div class="option solver-config-mode-option  option-selected" id="solver-config-mode-reshuffle" data-mode="reshuffle">Reshuffle</div>
+                            <div id="indicator-reshuffle"></div>
+                        </div>
                     </div>
                     <div class="guide-section-content-text">Routes to be Reshuffled go on the right, Routes not to be considered by the optimizer stays on the left.</div>
                     <div class="centered-image">
@@ -166,15 +190,161 @@
         </div>
 
         <div class="guide-section" id="free-optimization-section">
-            <div class="guide-section-title"><a href="/free_optimization">Free Optimization</a></div>
+            <div class="row guide-section-top-row">
+                <div class="col-auto">
+                    <div class="guide-section-title"><a href="/free_optimization">Free Optimization</a></div>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-free-optimization-breakroute" data-section="free-optimization-section-breakroute-subsection">Break Route</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-free-optimization-breakdown" data-section="free-optimization-section-breakdown-subsection">Break Down</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-free-optimization-reshuffle" data-section="free-optimization-section-reshuffle-subsection">Reshuffle</button>
+                </div>
+            </div>
+
             <div class="guide-section-content">
-                <div>words</div>
-                <div>words</div>
-                <div>words</div>
-                <div>words</div>
-                <div>words</div>
-                <div>words</div>
-                <div>words</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">
+                        Free Optimization is similar to Simple Optimization, except there is more freedom to choose
+                        what points and vehicles are involved. You may select an entire route, or just a subset of 
+                        individual points from that route.
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Select the available Vehicles by clicking the Vehicle Cards on the left. The selected Vehicles will appear under the "Vehicles Involved" column on the right.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-select-vehicles.jpg" alt="free-optimization-select-vehicles">
+                    </div>
+    
+                    <div class="guide-section-content-text">
+                        Click <button class="black-button">Edit</button> button to edit the details for the Vehicle, such as its current Latitude and Longtitude, Tonnage, Manpower, and Start and End timings.
+                    </div>
+                    <div class="guide-section-content-text">
+                        Click <button class="blue-button">Save</button> button to save the changes.
+                    </div>
+                    <div class="guide-section-content-text">
+                        Click <button class="red-button">Remove</button> button to remove the Vehicle from the optimization.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-vehicles-edit.jpg" alt="free-optimization-vehicles-edit">
+                    </div>
+
+
+
+                    <div class="guide-section-content-text">
+                        Select all the points in a Route by clicking the Route Cards on the left. The points from the selected Routes will appear on the right.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-select-routes.jpg" alt="free-optimization-select-routes">
+                    </div>
+
+
+                    <div class="guide-section-content-text">
+                        Select individual Points by clicking on the Collection Point Cards on the left. Selected Points will appear on the right, seperated by their Routes.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-select-points.jpg" alt="free-optimization-select-points">
+                    </div>
+                    <div class="guide-section-content-text">
+                        Click <button class="black-button">Edit</button> button to edit the details for the Collection Point, such as its current Allowed Vehicle Type and Tonnage.
+                        Use Ctrl + Click to select multiple options for the Allowed Vehicle Type.
+                    </div>
+                    <div class="guide-section-content-text">
+                        Click <button class="blue-button">Save</button> button to save the changes.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-points-edit.jpg" alt="free-optimization-points-edit">
+                    </div>
+
+
+
+                    <div class="guide-section-content-text">
+                        Click <button class="red-button">Remove</button> button in each Collection Point Card to remove the individual Collection Point from the optimization.
+                        Or click the <button class="red-button map-button">Remove Route</button> to remove all Collection Points belonging to that Route.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-remove-route-points.jpg" alt="free-optimization-remove-route-points">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="free-optimization-section-breakroute-subsection">
+                <div class="guide-section-subtitle">Break Route</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">To choose the Break Route scenario, ensure the slider is at the "Break Route" position.</div>
+                    <div class="row" id="solver-config-mode">
+                        <div id="solver-config-mode-slider" class="slider">
+                            <div class="option solver-config-mode-option  option-selected" id="solver-config-mode-breakroute" data-mode="breakroute">Break Route</div>
+                            <div class="option solver-config-mode-option" id="solver-config-mode-breakdown" data-mode="breakdown">Break Down</div>
+                            <div class="option solver-config-mode-option" id="solver-config-mode-reshuffle" data-mode="reshuffle">Reshuffle</div>
+                            <div id="indicator-breakroute"></div>
+                        </div>
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Collection Points involved will be broken into the selected Vehicles.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-breakroute.jpg" alt="free-optimization-breakroute">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="free-optimization-section-breakdown-subsection">
+                <div class="guide-section-subtitle">Break Down</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">To choose the Break Down scenario, ensure the slider is at the "Break Down" position.</div>
+                    <div class="row" id="solver-config-mode">
+                        <div id="solver-config-mode-slider" class="slider">
+                            <div class="option solver-config-mode-option" id="solver-config-mode-breakroute" data-mode="breakroute">Break Route</div>
+                            <div class="option solver-config-mode-option option-selected" id="solver-config-mode-breakdown" data-mode="breakdown">Break Down</div>
+                            <div class="option solver-config-mode-option" id="solver-config-mode-reshuffle" data-mode="reshuffle">Reshuffle</div>
+                            <div id="indicator-breakdown"></div>
+                        </div>
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Vehicles involved should be all Vehicles except the one that broke down. Collection Points involved will be broken into the selected Vehicles.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-breakdown.jpg" alt="free-optimization-breakdown">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="free-optimization-section-reshuffle-subsection">
+                <div class="guide-section-subtitle">Reshuffle</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">To choose the Reshuffle scenario, ensure the slider is at the "Reshuffle" position.</div>
+                    <div class="row" id="solver-config-mode">
+                        <div id="solver-config-mode-slider" class="slider">
+                            <div class="option solver-config-mode-option" id="solver-config-mode-breakroute" data-mode="breakroute">Break Route</div>
+                            <div class="option solver-config-mode-option" id="solver-config-mode-breakdown" data-mode="breakdown">Break Down</div>
+                            <div class="option solver-config-mode-option  option-selected" id="solver-config-mode-reshuffle" data-mode="reshuffle">Reshuffle</div>
+                            <div id="indicator-reshuffle"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-section-content-text">
+                        Collection Points involved will be broken into the selected Vehicles.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/free_optimization_screenshots/free-optimization-reshuffle.jpg" alt="free-optimization-reshuffle">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="free-optimization-section-reshuffle-subsection">
+                <div class="guide-section-content-text">Choose whether to use clusters when optimizing. Using clusters will result in a faster run time but may yield less optimal results. Finally, click <button class="map-button">Optimize</button> to start the opimitzation!</div>
+                <div class="centered-image">
+                    <img src="../static/images/simple_optimization_screenshots/simple-optimization-use-clusters-button.jpg" alt="simple-optimization-use-clusters-button">
+                </div>
             </div>
         </div>
 
