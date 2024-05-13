@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Display loading screen
-    showLoadingScreen();
+    // showLoadingScreen();
+    hideLoadingScreen();
     loadBlockContent('home_page.html');
 
     // Hide loading screen when page is fully loaded
@@ -8,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function showLoadingScreen() {
-    $('.loading-screen').show();
+    $('#loading-screen').show();
 }
 
 function hideLoadingScreen() {
-    $('.loading-screen').hide();
+    $('#loading-screen').hide();
 }
 
 $(document).ready(function() {
