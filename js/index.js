@@ -74,7 +74,7 @@ function handleRouting() {
 
     // Check the path and load content accordingly
     if (path === '/') {
-        loadBlockContent('home_page.html');
+        loadBlockContent('index.html');
     } else if (path === '/simple_optimization') {
         loadBlockContent('simple_optimization.html');
     } else if (path === '/free_optimization') {
