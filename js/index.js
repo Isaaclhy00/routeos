@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Display loading screen
     showLoadingScreen();
-    loadBlockContent('guide.html');
+    loadBlockContent('home_page.html');
 
     // Hide loading screen when page is fully loaded
     window.addEventListener("load", hideLoadingScreen);

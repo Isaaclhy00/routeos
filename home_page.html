@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- <div class="row">
+<h1 style="color:var(--background-color-green);margin-top:10vh;margin-left:10vh">Sembwaste Route Optimization</h1>
+</div> -->
+<div class="row">
+    <div class="row mt-5 mx-5">
+        <a href="/simple_optimization" class="btn btn-dark mx-2">Simple Optimization</a>
+        <a href="/free_optimization" class="btn btn-dark mx-2">Free Optimization</a>
+        <!-- <a href="/edit_optimization" class="btn btn-dark mx-2">Edit Optimization</a> -->
+        <a href="/edit_fleet" class="btn btn-dark mx-2">Edit Fleet</a>
+        <a href="/edit_locations" class="btn btn-dark mx-2">Edit Locations</a>
+        <a href="/edit_clusters" class="btn btn-dark mx-2">Edit Clusters</a>
+        <a href="/guide" class="btn btn-dark mx-2">Guide</a>
+    </div>
+</div>
+
+<style>
+.btn-dark{
+    background-color: var(--background-color-green);
+    color:black;
+    border-color: var(--background-color-green);
+}
+.btn-dark:hover{
+    background-color: var(--background-color-dark-green);
+    color:black;
+    border-color: var(--background-color-dark-green);   
+}
+
+</style>
+
+
+<script>
+    // JavaScript function to attach a background image to the div
+    function setBackgroundImage() {
+        const divElement = document.getElementById('page-content');
+        divElement.style.backgroundImage = 'url({{url_for("static", filename="images/sembwaste-truck-breakdown-1.webp")}})';
+        divElement.style.backgroundSize = 'cover'; // This will make sure the image covers the entire area
+        divElement.style.backgroundPosition = 'center'; // This will center the image
+        divElement.style.backgroundRepeat = 'no-repeat'; // Ensure the image doesn't repeat
+    }
+    // Call the function to set the background image
+    setBackgroundImage();
+</script>
+
+{% endblock %}
+
+

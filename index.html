@@ -1,50 +1,95 @@
-{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Optimization</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-{% block content %}
-
-<!-- <div class="row">
-<h1 style="color:var(--background-color-green);margin-top:10vh;margin-left:10vh">Sembwaste Route Optimization</h1>
-</div> -->
-<div class="row">
-    <div class="row mt-5 mx-5">
-        <a href="/simple_optimization" class="btn btn-dark mx-2">Simple Optimization</a>
-        <a href="/free_optimization" class="btn btn-dark mx-2">Free Optimization</a>
-        <!-- <a href="/edit_optimization" class="btn btn-dark mx-2">Edit Optimization</a> -->
-        <a href="/edit_fleet" class="btn btn-dark mx-2">Edit Fleet</a>
-        <a href="/edit_locations" class="btn btn-dark mx-2">Edit Locations</a>
-        <a href="/edit_clusters" class="btn btn-dark mx-2">Edit Clusters</a>
-        <a href="/guide" class="btn btn-dark mx-2">Guide</a>
+<body class="dark-mode"> 
+    <!-- Include the loading screen -->
+    <div class="loading-screen">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
     </div>
-</div>
+    
+    <nav class="navbar navbar-expand-lg sticky-top" id="navbar"> 
+        <button class="navbar-toggler" id="btn-toggle-sidebar" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="assets/icons/icons8-menu-32.png" alt="Sidebar">
+        </button>
+        <b class="navbar-brand" id="page-name" href="/">RouteOS</b>
+    </nav>
 
-<style>
-.btn-dark{
-    background-color: var(--background-color-green);
-    color:black;
-    border-color: var(--background-color-green);
-}
-.btn-dark:hover{
-    background-color: var(--background-color-dark-green);
-    color:black;
-    border-color: var(--background-color-dark-green);   
-}
+    <nav id="sidebar" class="sidebar-hidden">
+        <div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" data-name="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/simple_optimization" onclick="loadDifferentHTML('simple_optimization.html')" data-name="Simple Optimization">Simple Optimization</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/free_optimization" onclick="loadDifferentHTML('free_optimization.html')" data-name="Free Optimization">Free Optimization</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_fleet" onclick="loadDifferentHTML('edit_fleet.html')" data-name="Edit Fleet">Edit Fleet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_locations" onclick="loadDifferentHTML('edit_locations.html')" data-name="Edit Locations">Edit Locations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_clusters" onclick="loadDifferentHTML('edit_clusters.html')" data-name="Edit Clusters">Edit Clusters</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/guide" onclick="loadDifferentHTML('guide.html')" data-name="Guide">Guide</a>
+                </li>
+                <!-- Dummy nav-items to help with scrolling on smaller window sizes-->
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+            </ul>
+        </div>  
+    </nav>
+    
+    <div class="content" id="page-content"> 
+        <div class="container-fluid" id="block-content">
+        </div>
+    </div>
 
-</style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="css/index.css" rel="stylesheet"/>
+    <script src="js/index.js"></script>
+    <link href="css/loading_screen.css" rel="stylesheet"/>
 
-
-<script>
-    // JavaScript function to attach a background image to the div
-    function setBackgroundImage() {
-        const divElement = document.getElementById('page-content');
-        divElement.style.backgroundImage = 'url({{url_for("static", filename="images/sembwaste-truck-breakdown-1.webp")}})';
-        divElement.style.backgroundSize = 'cover'; // This will make sure the image covers the entire area
-        divElement.style.backgroundPosition = 'center'; // This will center the image
-        divElement.style.backgroundRepeat = 'no-repeat'; // Ensure the image doesn't repeat
-    }
-    // Call the function to set the background image
-    setBackgroundImage();
-</script>
-
-{% endblock %}
-
-
+    <!-- Load Data -->
+    <script src="js/data/clusters_data.js"></script>
+    <script src="js/data/depots_data.js"></script>
+    <script src="js/data/points_data.js"></script>
+    <script src="js/data/routes_data.js"></script>
+    <script src="js/data/vehicles_data.js"></script>
+    <script src="js/data/vehicle_types_data.js"></script>
+</body>
+</html>
