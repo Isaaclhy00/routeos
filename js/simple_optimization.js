@@ -144,65 +144,9 @@ $(document).ready(function () {
     generateRunOptimizationRouteCardsBreak(routes_data.filter(route => route['id'] >= 0), document.getElementById('routes-not-involved-cards-container'), document.getElementById('routes-not-involved-cards-count'), ` Routes To ${RIGHT_COLUMN_TEXT}`, "none");
 
     // Optimize button
-    function handleOptimizeButtonClick() {
-        // Remove previous event listener
-        document.getElementById('btn-optimize').removeEventListener('click', handleOptimizeButtonClick);
-
-        // Your optimization logic goes here
-        console.log("routesToBreakSet:", routesToBreakSet)
-        console.log("routesToOptimizeSet:", routesToOptimizeSet)
-        // Create an object containing your sets and variables
-        var data = {
-            routesToBreak: routes_data.filter(route => routesToBreakSet.has(String(route['id']))),
-            routesToOptimize: routes_data.filter(route => routesToOptimizeSet.has(String(route['id']))),
-            pointsToAssign: points_data.filter(point => (routesToBreakSet.has(String(point['Route_ID'])) || routesToOptimizeSet.has(String(point['Route_ID'])))),
-            vehiclesInvolved: vehicles_data.filter(vehicle => routesToOptimizeSet.has(String(vehicle['Route_ID']))),
-            depotData: depots_data,
-            solverConfig: {
-                mode: solverConfigMode,
-                useClusters: isUseClusters,
-            },
-            allVehicleTypes: vehicle_types_data
-        };
-
-        if (solverConfigMode === "reshuffle") {
-            data.pointsToAssign.forEach(point => {
-                point['Route_ID'] = -1;
-            });
-        }
-
-        const loadingAnimation = document.querySelector('.loading-screen');
-        loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 0.6)';
-        loadingAnimation.style.display = 'flex';
-        console.log(data);
-        fetch('/solve', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Check your assignments!');
-            }
-            return response.json();
-        })
-        .then(data => {
-            window.location.href = '/edit_optimization?run_number=' + data.run_number;
-        })
-        .catch(error => {
-            alert('An error occurred: ' + error.message);
-            loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 1)';
-            loadingAnimation.style.display = 'none';
-        });
-
-        // Attach new event listener after the optimization logic is complete
-        document.getElementById('btn-optimize').addEventListener('click', handleOptimizeButtonClick);
-    }
-
-    // Attach initial event listener
-    document.getElementById('btn-optimize').addEventListener('click', handleOptimizeButtonClick);
+    document.getElementById('btn-optimize').addEventListener('click', function() {
+        alert("Function disabled to facilitate hosting on Github Pages");
+    });
 
 });
 
