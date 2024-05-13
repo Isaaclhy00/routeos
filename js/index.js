@@ -73,9 +73,7 @@ function handleRouting() {
     const path = window.location.pathname;
 
     // Check the path and load content accordingly
-    if (path === '/') {
-        loadBlockContent('index.html');
-    } else if (path === '/simple_optimization') {
+    if (path === '/simple_optimization') {
         loadBlockContent('simple_optimization.html');
     } else if (path === '/free_optimization') {
         loadBlockContent('free_optimization.html');
@@ -88,13 +86,12 @@ function handleRouting() {
     } else if (path === '/guide') {
         loadBlockContent('guide.html');
     } else {
-        // Handle unknown paths or 404
-        loadBlockContent('404.html');
+        loadBlockContent('index.html');
     }
 }
 
 function loadBlockContent(htmlFile) {
-    fetch(file)
+    fetch(htmlFile)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
