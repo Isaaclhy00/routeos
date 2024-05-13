@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- HTML -->
+
+<div class="col" id="main-content">
+    <div id="solver-config-top-row">
+        <div class="col">
+            <div class="row" id="solver-config-mode">
+                <div id="solver-config-mode-slider" class="slider">
+                    <div class="option solver-config-mode-option  option-selected" id="solver-config-mode-breakroute" data-mode="breakroute">Break Route</div>
+                    <div class="option solver-config-mode-option" id="solver-config-mode-breakdown" data-mode="breakdown">Break Down</div>
+                    <div class="option solver-config-mode-option" id="solver-config-mode-reshuffle" data-mode="reshuffle">Reshuffle</div>
+                    <div class="indicator" id="solver-config-mode-indicator"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto ml-auto">
+            <label class="switch" id="toggle-use-clusters">
+                <span class="use-cluster-slider round">Use Clusters</span>
+            </label>
+        </div>
+        <div class="col-auto ml-auto">
+            <button class="map-button" id="btn-optimize">Optimize</button>
+        </div>
+    </div>
+
+    <div id="solver-config-bottom-row-reshuffle" class="row">
+        <div id="reshuffle-route-column" class="column-cards routes-column col">
+            <div class="row">
+                <div class="col-3">
+                    <div id="reshuffle-route-cards-count" class="run-optimization-cards-count">0 Routes</div>
+                </div>
+                <div class="col-auto ml-auto">
+                    <button class="map-button btn-reset-routes" id="reshuffle-btn-reset-routes" data-state="select-all">Reset</button>
+                </div>
+            </div>
+            <div id="reshuffle-route-cards-container" class="cards-container">
+            </div>
+        </div>
+
+        <div id="routes-to-reshuffle-column" class="column-cards routes-column col">
+            <div id="routes-to-reshuffle-cards-count" class="run-optimization-cards-count">0 Routes To Reshuffle</div>
+            <div id="routes-to-reshuffle-cards-container" class="cards-container"></div>
+        </div>
+    </div>
+
+    <div id="solver-config-bottom-row-break" class="row">
+        <div id="break-route-column" class="column-cards routes-column col">
+            <div class="row">
+                <div class="col-3">
+                    <div id="break-route-cards-count" class="run-optimization-cards-count">0 Routes</div>
+                </div>
+                <div class="col-auto ml-auto">
+                    <button class="map-button btn-reset-routes" id="break-btn-reset-routes" data-state="select-all">Reset</button>
+                </div>
+            </div>
+            <div id="break-route-cards-container" class="cards-container">
+            </div>
+        </div>
+
+        <div id="routes-involved-column" class="column-cards routes-column col">
+            <div id="routes-involved-cards-count" class="run-optimization-cards-count">0 Routes To Break</div>
+            <div id="routes-involved-cards-container" class="cards-container"></div>
+        </div>
+
+        <div id="routes-not-involved-column" class="column-cards routes-column col">
+            <div id="routes-not-involved-cards-count" class="run-optimization-cards-count">0 Routes To Optimize</div>
+            <div id="routes-not-involved-cards-container" class="cards-container"></div>
+        </div>
+    </div>
+</div>
+
+<!-- IMPORTS -->
+<!-- Load SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+<!-- Load Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" />
+
+<!-- Load Leaflet Draw-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.css" />
+<script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
+
+<!-- Load jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Load Css -->
+<link href="{{ url_for('static', filename='css/templates/simple_optimization.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/map.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/card.css') }}" rel="stylesheet"/>
+
+<!-- Load Js -->
+<script src="{{ url_for('static', filename='js/mapLogic.js') }}"></script>
+<script src="{{ url_for('static', filename='js/templates/simple_optimization.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url(../static/css/app_variables.css);
+        
+        .loading-screen {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background-color-green);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; 
+            opacity: 100%;
+        }
+
+        .wave {
+        width: 10px;
+        height: 50px;
+        background: white;
+        margin: 10px;
+        animation: wave 1s linear infinite;
+        border-radius: 30px;
+        }
+        .wave:nth-child(1) {
+        animation-delay: 0.1s;
+        }
+        .wave:nth-child(2) {
+        animation-delay: 0.2s;
+        }
+        .wave:nth-child(3) {
+        animation-delay: 0.3s;
+        }
+        .wave:nth-child(4) {
+        animation-delay: 0.4s;
+        }
+        .wave:nth-child(5) {
+        animation-delay: 0.5s;
+        }
+        .wave:nth-child(6) {
+        animation-delay: 0.1s;
+        }
+        .wave:nth-child(7) {
+        animation-delay: 0.2s;
+        }
+        .wave:nth-child(8) {
+        animation-delay: 0.3s;
+        }
+        .wave:nth-child(9) {
+        animation-delay: 0.4s;
+        }
+        .wave:nth-child(10) {
+        animation-delay: 0.5s;
+        }
+        .wave:nth-child(11) {
+        animation-delay: 0.1;
+        }
+        .wave:nth-child(12) {
+        animation-delay: 0.2s;
+        }
+        .wave:nth-child(13) {
+        animation-delay: 0.3s;
+        }
+        .wave:nth-child(14) {
+        animation-delay: 0.4s;
+        }
+        .wave:nth-child(15) {
+        animation-delay: 0.5s;
+        }
+        .wave:nth-child(16) {
+        animation-delay: 0.1s;
+        }
+        .wave:nth-child(17) {
+        animation-delay: 0.2s;
+        }
+        .wave:nth-child(18) {
+        animation-delay: 0.3s;
+        }
+        .wave:nth-child(19) {
+        animation-delay: 0.4s;
+        }
+        .wave:nth-child(20) {
+        animation-delay: 0.5s;
+        }
+
+        @keyframes wave {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0);
+        }
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="loading-screen">
+        <div class="loading-bar"></div>
+    </div> -->
+
+    <div class="loading-screen">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+</body>
+</html>

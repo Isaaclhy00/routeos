@@ -1,0 +1,138 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- HTML -->
+
+<!-- Plot From GeoTab Modal -->
+<div class="modal fade" id="geotab-modal" tabindex="-1" role="dialog" aria-labelledby="geotab-modal" aria-hidden="true">.
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dark-mode">
+            <div class="modal-header">
+                <h5 class="modal-title" id="geotab-modal-label">Select Vehicle & Date</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-geotab-vehicle-id">Vehicle ID:</label>
+                    <!-- <input type="text" class="form-control" name="input-geotab-vehicle-id" id="input-geotab-vehicle-id" placeholder="Enter Vehicle ID"> -->
+                    <select class="form-control" id="input-geotab-vehicle-id" name="input-geotab-vehicle-id" placeholder="Enter Vehicle ID"></select>
+                </div>
+                <div class="form-group">
+                    <label for="selectDates">Select Dates:</label>
+                    <div class="row">
+                        <div class="col-5">
+                            <input type="date" class="form-control" name="input-geotab-from-date" id="input-geotab-from-date" value="2024-03-13">
+                        </div>
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                            <span>to</span>
+                        </div>                        
+                        <div class="col-5">
+                            <input type="date" class="form-control" name="input-geotab-to-date" id="input-geotab-to-date" value="2024-03-15">
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-close-geotab-modal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btn-plot-geotab-points" class="btn btn-primary">Plot</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="main-content">
+    <div class="col-9  column" id="map-and-buttons-column">
+        <!-- Upload Buttons-->
+        <div class="row" id="upload-buttons-row">
+            <div class="col-auto">
+                <input type="file" id="input-route-sheet"/>
+                <button class="map-button" id="btn-upload-file">Upload Excel</button>
+                <button class="map-button" id="btn-download-file">Download Excel</button>
+                <button class="map-button" id="btn-hide-markers" data-state="shown">Hide Markers</button>
+            </div>
+            <div class="col-auto ml-auto">
+                <button class="map-button" id="btn-geotab">Plot From GeoTab</button>
+                <button class="map-button" id="btn-clear-geotab">Clear Geotab Points</button>
+                <button class="map-button" id="btn-clear-route-sheet">Clear Route Sheet</button>
+            </div>
+        </div>
+        {% include 'map.html' %}
+    </div>
+    <div class="col-3 column">
+        <div id="cp-column" class="column-cards">
+            <div id="search-cp-container" class="row">
+                <div class="col-10">
+                    <input type="text" class="input-search-cards" id="input-search-cp" placeholder="Search...">
+                </div>
+            </div>
+
+            <div id="search-cp-container" class="row">
+                <div class="col-9">
+                    <span id="cp-cards-count" class="cards-count">0 Collection Points</span>
+                </div>
+                <div class="col-2 btn-top-card" id="btn-top-cp">
+                    Top
+                </div>
+            </div>
+            <div id="cp-cards-container" class="cards-container">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Download CP Excel Modal -->
+<div class="modal fade" id="download-cp-excel-modal" tabindex="-1" role="dialog" aria-labelledby="download-cp-excel-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dark-mode">
+            <div class="modal-header">
+                <h5 class="modal-title" id="download-cp-excel-modal-label">Download Excel</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-cp-excel-filename">Please name your file</label>
+                    <input type="text" class="form-control" name="input-cp-excel-filename" id="input-cp-excel-filename" placeholder="Enter your file name">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancel-download-cp-excel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="btn-confirm-download-cp-excel" class="btn btn-primary">Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- IMPORTS -->
+<!-- Load SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+<!-- Load Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" />
+
+<!-- Load Leaflet Draw-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.css" />
+<script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
+
+<!-- Load jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Load Tabulator -->
+<link href="https://unpkg.com/tabulator-tables@5.6.1/dist/css/tabulator_midnight.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.6.1/dist/js/tabulator.min.js"></script>
+<script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+
+<!-- Include Turf.js for spatial analysis -->
+<script src="https://unpkg.com/@turf/turf"></script>
+
+<!-- Load Css -->
+<link href="{{ url_for('static', filename='css/templates/edit_locations.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/map.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/calendar.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/card.css') }}" rel="stylesheet"/>
+
+<!-- Load Js -->
+<script src="{{ url_for('static', filename='js/mapLogic.js') }}"></script>
+<script src="{{ url_for('static', filename='js/templates/edit_locations.js') }}"></script>
+<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
+{% endblock %}

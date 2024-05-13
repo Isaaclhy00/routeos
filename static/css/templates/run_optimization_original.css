@@ -1,0 +1,217 @@
+@import url('../app_variables.css');
+
+#main-content {
+    height: 100%;
+}
+
+#solver-config-container {
+    margin-right: -10px;
+}
+
+#solver-config {
+    width: 100%;
+    height: 80%;
+    margin-left: 0px;
+}
+
+#solver-config-top-row {
+    align-items: center;
+    display: flex;
+    justify-content: end;
+}
+
+.temproary-restrict-height-vh {
+    max-height: 83vh !important;
+    height: 83vh !important ;
+}
+
+.select-all-button {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.edit-button {
+    margin-right: 15px;
+    border-radius: 5px;
+    background-color: var(--map-button-background-color-blue);
+    color: var(--text-color-white);
+    font-weight: bold;
+    font-size: small;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); 
+}
+
+.red-button {
+    margin-right: 15px;
+    background-color: #dc3545 !important;
+    border-radius: 5px;
+    background-color: var(--map-button-background-color-blue);
+    color: var(--text-color-white);
+    font-weight: bold;
+    font-size: small;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); 
+}
+
+.btn-using-clusters {
+    background-color: blue !important;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 180px;
+    height: 40px;
+}
+  
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.use-cluster-slider {
+    position: relative;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    cursor: pointer;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    height:100%;
+}
+  
+.use-cluster-slider:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    left: 5px;
+    bottom: 5px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.use-clusters-selected .use-cluster-slider {
+    background-color: #2196F3;
+}
+
+.use-clusters-selected .use-cluster-slider:before {
+    -webkit-transform: translateX(140px);
+    -ms-transform: translateX(140px);
+    transform: translateX(140px);
+}
+  
+/* Rounded sliders */
+.use-cluster-slider.round {
+    border-radius: 34px;
+}
+  
+.use-cluster-slider.round:before {
+    border-radius: 50%;
+}
+
+.edit-delete-btn-container {
+    display: flex;
+    flex: 1 1;
+    margin-left: 15px;
+    margin-top: -20px;
+    justify-content: end;
+}
+
+.remove-route-button {
+    margin-top: 15px;
+}
+
+#slider-and-window-column {
+    max-height: 100%;
+    overflow-y: hidden;
+}
+
+#window {
+    width: 100%;
+    height: calc(100% - 65px);
+    overflow-x: hidden;
+}
+
+#sliding-window {
+    width: 300%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+}
+
+.sliding-window-column {
+    width: calc(100% / 3);
+    transition: transform 0.5s ease;
+    overflow: hidden;
+}
+
+.slider {
+    height: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.option {
+    position: relative;
+    width: calc(100% / 3);
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    z-index: 1;
+}
+
+.option-selected {
+    color: white;
+    text-shadow: 2px 2px 5px #000000
+}
+
+.indicator {
+    width: calc(100% / 2.99);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left 0.3s ease;
+    border-radius: 10px;
+    background-color: var(--background-color-green);
+    z-index: 0;
+}
+
+#points-involved-columns-container {
+    overflow-y: scroll;
+    max-height: 83vh !important;
+    position: relative;
+}
+
+#points-involved-columns-container::-webkit-scrollbar{
+    width: 0px;
+}
+
+#input-search-points-involved-column-containers-container {
+    background-color: var(--background-color-green);
+    margin-right: 0px;
+    margin-bottom: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+#points-and-routes-involved-count {
+    margin-top: 20px;
+}

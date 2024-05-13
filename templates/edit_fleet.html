@@ -1,0 +1,300 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- HTML -->
+
+<div class="col" id="main-content">
+    <div class="row" id="edit-fleet-upload-download-buttons-row">
+        <input type="file" id="input-upload-fleet"/>
+        <button class="map-button card-colum-button" id="btn-upload-fleet">Upload Fleet</button>
+        <button class="map-button card-colum-button" id="btn-downlaod-fleet">Download Fleet</button>
+    </div>
+    
+    <div class="row edit-fleet-mian-content">
+        <div class="col-3 no-right-padding column">
+            <div id="depot-column" class="column-cards">
+                <div id="search-depot-container" class="row">
+                    <div class="col">
+                        <input type="text" class="input-search-cards" id="input-search-depot" placeholder="Search...">
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <button class="map-button card-colum-button" id="btn-create-depot">Create Depot</button>
+                    </div>
+                </div>
+
+                <div id="search-depot-container" class="row">
+                    <div class="col-9">
+                        <span id="depot-cards-count" class="cards-count">0 Depots</span>
+                    </div>
+                    <div class="col-2 btn-top-card" id="btn-top-depot">
+                        Top
+                    </div>
+                </div>
+                <div id="depot-cards-container" class="cards-container">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 no-right-padding column">
+            <div id="vehicle-type-column" class="column-cards">
+                <div id="search-veh-type-container" class="row">
+                    <div class="col">
+                        <input type="text" class="input-search-cards" id="input-search-veh-type" placeholder="Search...">
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <button class="map-button card-colum-button" id="btn-create-veh-type">Create Vehicle Type</button>
+                    </div>
+                </div>
+
+                <div id="search-veh-type-container" class="row">
+                    <div class="col-9">
+                        <span id="veh-type-cards-count" class="cards-count">0 Vehicle Types</span>
+                    </div>
+                    <div class="col-2 btn-top-card" id="btn-top-veh-type">
+                        Top
+                    </div>
+                </div>
+                <div id="veh-type-cards-container" class="cards-container">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 no-right-padding column">
+            <div id="route-column" class="column-cards">
+                <div id="search-route-container" class="row">
+                    <div class="col">
+                        <input type="text" class="input-search-cards" id="input-search-route" placeholder="Search...">
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <button class="map-button card-colum-button" id="btn-create-route">Create Route</button>
+                    </div>
+                </div>
+
+                <div id="search-route-container" class="row">
+                    <div class="col-9">
+                        <span id="route-cards-count" class="cards-count">0 Routes</span>
+                    </div>
+                    <div class="col-2 btn-top-card" id="btn-top-route">
+                        Top
+                    </div>
+                </div>
+                <div id="route-cards-container" class="cards-container">
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-3 column">
+            <div id="vehicle-column" class="column-cards">
+                <div id="search-vehicle-container" class="row">
+                    <div class="col">
+                        <input type="text" class="input-search-cards" id="input-search-vehicle" placeholder="Search...">
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <button class="map-button card-colum-button" id="btn-create-vehicle">Create Vehicle</button>
+                    </div>
+                </div>
+
+                <div id="search-vehicle-container" class="row">
+                    <div class="col-9">
+                        <span id="vehicle-cards-count" class="cards-count">0 Vehicles</span>
+                    </div>
+                    <div class="col-2 btn-top-card" id="btn-top-vehicle">
+                        Top
+                    </div>
+                </div>
+                <div id="vehicle-cards-container" class="cards-container">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vehicle Type Modal -->
+<div class="modal fade" id="veh-type-modal" tabindex="-1" role="dialog" aria-labelledby="veh-type-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dark-mode">
+            <div class="modal-header">
+                <h5 class="modal-title" id="veh-type-modal-label">Vehicle Type</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-veh-type-name">Vehicle Type Name</label>
+                    <input type="text" class="form-control" name="input-veh-type-name" id="input-veh-type-name" placeholder="Enter your vehicle type name">
+                </div>
+                <div class="form-group">
+                    <label for="input-veh-type-capacity">Vehicle Type Capacity</label>
+                    <input type="number" class="form-control" name="input-veh-type-capacity" id="input-veh-type-capacity" placeholder="Enter your vehicle type capacity">
+                </div>
+                <div class="form-group">
+                    <label for="input-veh-type-range">Vehicle Type Range</label>
+                    <input type="number" class="form-control" name="input-veh-type-range" id="input-veh-type-range" placeholder="Enter your vehicle type range">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancel-veh-type" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btn-delete-veh-type" class="btn btn-danger">Delete</button>
+                    <button type="button" id="btn-save-veh-type" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vehicles Modal -->
+<div class="modal fade" id="vehicle-modal" tabindex="-1" role="dialog" aria-labelledby="vehicle-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dark-mode">
+            <div class="modal-header">
+                <h5 class="modal-title" id="vehicle-modal-label">Vehicle</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-vehicle-name">Vehicle Name</label>
+                    <input type="text" class="form-control" name="input-vehicle-name" id="input-vehicle-name" placeholder="Enter your vehicle plate number">
+                </div>
+                <div class="form-group">
+                    <label for="input-vehicle-type">Vehicle Type</label>
+                    <select class="form-control" name="input-vehicle-type" id="input-vehicle-type">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input-vehicle-route">Vehicle Route</label>
+                    <select class="form-control" name="input-vehicle-route" id="input-vehicle-route">
+                    </select>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="input-vehicle-trips">Vehicle Trips</label>
+                    <input type="number" class="form-control" name="input-vehicle-trips" id="input-vehicle-trips" placeholder="Enter your vehicle max trips">
+                </div>
+                <div class="form-group">
+                    <label for="input-vehicle-manpower">Vehicle Manpower</label>
+                    <input type="number" class="form-control" name="input-vehicle-manpower" id="input-vehicle-manpower" placeholder="Enter your vehicle manpower">
+                </div> -->
+                <div class="form-group">
+                    <label for="input-vehicle-depot">Vehicle Depot</label>
+                    <select class="form-control" name="input-vehicle-depot" id="input-vehicle-depot">
+                    </select>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancel-vehicle" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btn-delete-vehicle" class="btn btn-danger">Delete</button>
+                    <button type="button" id="btn-save-vehicle" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Routes Modal -->
+<div class="modal fade" id="route-modal" tabindex="-1" role="dialog" aria-labelledby="route-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dark-mode">
+            <div class="modal-header">
+                <h5 class="modal-title" id="route-modal-label">Route</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-route-name">Route Name</label>
+                    <input type="text" class="form-control" name="input-route-name" id="input-route-name" placeholder="Enter your route number">
+                </div>
+                <div class="form-group">
+                    <label for="input-route-depot">Route Depot</label>
+                    <select class="form-control" name="input-route-depot" id="input-route-depot">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input-route-vehicle-type">Vehicle Type</label>
+                    <select class="form-control" name="input-route-vehicle-type" id="input-route-vehicle-type">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input-route-trips">Route Trips</label>
+                    <input type="number" class="form-control" name="input-route-trips" id="input-route-trips" placeholder="Enter your route max trips">
+                </div>
+                <div class="form-group">
+                    <label for="input-route-manpower">Route Manpower</label>
+                    <input type="number" class="form-control" name="input-route-manpower" id="input-route-manpower" placeholder="Enter your route manpower">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancel-route" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btn-delete-route" class="btn btn-danger">Delete</button>
+                    <button type="button" id="btn-save-route" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Depots Modal -->
+<div class="modal fade" id="depot-modal" tabindex="-1" role="dialog" aria-labelledby="depot-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dark-mode">
+            <div class="modal-header">
+                <h5 class="modal-title" id="depot-modal-label">Depot</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-depot-name">Depot Name</label>
+                    <input type="text" class="form-control" name="input-depot-name" id="input-depot-name" placeholder="Enter your depot name">
+                </div>
+                <div class="form-group">
+                    <label for="input-depot-lat">Depot Lat</label>
+                    <input type="number" class="form-control" name="input-depot-lat" id="input-depot-lat" placeholder="Enter your depot latitude">
+                </div>
+                <div class="form-group">
+                    <label for="input-depot-long">Depot Long</label>
+                    <input type="number" class="form-control" name="input-depot-long" id="input-depot-long" placeholder="Enter your depot longitude">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancel-depot" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btn-delete-depot" class="btn btn-danger">Delete</button>
+                    <button type="button" id="btn-save-depot" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Download Fleet Excel Modal -->
+<div class="modal fade" id="download-fleet-excel-modal" tabindex="-1" role="dialog" aria-labelledby="download-fleet-excel-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dark-mode">
+            <div class="modal-header">
+                <h5 class="modal-title" id="download-fleet-excel-modal-label">Download Excel</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-fleet-excel-filename">Please name your file</label>
+                    <input type="text" class="form-control" name="input-fleet-excel-filename" id="input-fleet-excel-filename" placeholder="Enter your file name">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancel-download-fleet-excel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="btn-confirm-download-fleet-excel" class="btn btn-primary">Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- IMPORTS -->
+<!-- Load SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+<!-- Load jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Turf.js for spatial analysis -->
+<script src="https://unpkg.com/@turf/turf"></script>
+
+<!-- Load Css -->
+<link href="{{ url_for('static', filename='css/templates/edit_fleet.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/card.css') }}" rel="stylesheet"/>
+
+<!-- Load Js -->
+<script src="{{ url_for('static', filename='js/templates/edit_fleet.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
+{% endblock %}

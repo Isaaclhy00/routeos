@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Reset</title>
+</head>
+<body>
+    {% include 'loading_screen.html' %}
+
+    <script>
+        // Function to send POST request to reset data
+        function resetData() {
+            fetch('/reset_all_data_POST', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({}) 
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to reset data');
+                }
+                // Redirect back to the previous page after successful reset
+                window.setTimeout(function(){
+                    window.history.back();
+                    // window.location.relaod(true);
+                    window.location.href = sessionStorage.getItem('previousPage');
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Error resetting data:', error.message);
+            });
+        }
+        // Save the current page URL to session storage
+        sessionStorage.setItem('previousPage', document.referrer);
+
+        // Call resetData function when the page loads
+        window.onload = resetData;
+
+        // Reload the previous page after navigating back to it
+        window.addEventListener('popstate', function(event) {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

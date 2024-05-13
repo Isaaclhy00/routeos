@@ -1,0 +1,96 @@
+@import url('../app_variables.css');
+
+#main-content {
+    height: 100%;
+}
+
+#upload-buttons-row {
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+#map-container {
+    height: calc(100% - 50px);
+}
+
+#map-and-buttons-column{
+    padding-right: 0px;
+}
+
+#cluster-and-all-cp-column{
+    padding-right: 0px;
+    height: 100%;
+}
+
+#cluster-column-column {
+    height: 100%;
+}
+
+#cluster-column {
+    height: calc(100% - 15px);
+}
+
+.card-colum-button {
+    margin-top: 18px;
+    margin-left: 0px;
+    margin-right: 15px;
+}
+
+.card-colum-button.unclustered {
+    color: var(--text-color-dark);
+    background-color: var(--backround-color-dark)
+}
+
+.custom-button {
+    cursor: pointer;
+    background-color: var(--backround-color);
+    color: var(--text-color-dark);
+}
+
+/* Optional: Style the button when hovered */
+.custom-button:hover {
+    background-color: var(--backround-color);
+}
+
+.modal-content {
+    border: none; 
+}
+
+.cluster-id-display {
+    border: none;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    justify-content: center;
+    font-size: medium;
+}
+
+#btn-expand-collapse-cluster-cp {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+#cluster-cp-column {
+    height: 60px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+
+#all-cp-column {
+    height: calc(100% - 87px);
+    margin-top: 12px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+
+#cluster-id-display {
+    color: var(--text-color-dark);
+    font-weight: bolder;
+    font-size: medium;
+    position: absolute;
+    top: 10px;
+}
+
+#btn-save-edit-clusters {
+    background-color: #0d6efd;
+}

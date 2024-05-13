@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<input type="file" id="fileInput" multiple>
+<button onclick="combineFiles()">Combine Files</button>
+<button id="downloadButton" style="display: none;" onclick="downloadCombinedFile()">Download Combined File</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+    let combinedWorkbook;
+
+    function combineFiles() {
+        const fileInput = document.getElementById('fileInput');
+        const files = fileInput.files;
+        const combinedData = [];
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const sheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[sheetName];
+                let jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                if (i > 0) {
+                    // Skip the first row for the second and third files
+                    jsonData = jsonData.slice(1);
+                }
+
+                combinedData.push(...jsonData);
+
+                if (i === files.length - 1) {
+                    // When all files are processed, merge data and save it
+                    combinedWorkbook = XLSX.utils.book_new();
+                    const mergedWorksheet = XLSX.utils.json_to_sheet(combinedData);
+                    XLSX.utils.book_append_sheet(combinedWorkbook, mergedWorksheet, "Combined Data");
+                    document.getElementById('downloadButton').style.display = 'block';
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+    }
+
+    function downloadCombinedFile() {
+        if (combinedWorkbook) {
+            XLSX.writeFile(combinedWorkbook, "combined_data.xlsx");
+        }
+    }
+</script>
+
+{% endblock %}

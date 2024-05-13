@@ -1,0 +1,39 @@
+#main-content {
+    height: 100%;
+}
+
+#upload-buttons-row {
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+.hidden {
+    background-color: blue !important;
+}
+
+#map-container {
+    height: calc(100% - 50px);
+}
+
+#map-and-buttons-column {
+    padding-right: 0px;
+}
+
+#input-route-sheet {
+    display: none;
+}
+
+.custom-button {
+    cursor: pointer;
+    background-color: #e3e3e3;
+    color: #000000;
+}
+
+/* Optional: Style the button when hovered */
+.custom-button:hover {
+    background-color: #e0e0e0;
+}
+
+.modal-content {
+    border: none; 
+}

@@ -1,0 +1,141 @@
+<!-- 
+Online HTML, CSS and JavaScript editor to run code online.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Test</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  
+  <div>Hi</div>
+  
+<div id="app">
+
+  <div class ="row">
+
+  <div id="dlist1" class="list-group col-md-6" style="height:50vh;background-color: aqua;">
+    <div v-for="item in items1" :key="item.id" class="list-group-item ignore-elements" :data-id="item.id" onclick="handleClick(this)">
+      {{ item.name }}<br/>
+      <label>Description</label><br />
+      <input type="text" :value="item.description" @input="evt => updateItem(item.id, evt.target.value)" />
+    </div>
+  </div>
+  
+
+  <div id="dlist2" class="list-group col-md-6"  style="height:50vh;background-color:antiquewhite;">
+    <div v-for="item in items2" :key="item.id" class="list-group-item ignore-elements" :data-id="item.id" onclick="handleClick(this)">
+      {{ item.name }}<br/>
+      <label>Description</label><br />
+      <input type="text" :value="item.description" @input="evt => updateItem(item.id, evt.target.value)" />
+    </div>
+  </div>
+
+  </div>
+
+  <!-- <pre>{{$data.items}}</pre> -->
+  <pre style="background-color: whitesmoke;">{{list1}}</pre>
+  <pre style="background-color: whitesmoke;">{{list2}}</pre>
+
+  <button @click="handleSubmit()">Submit</button>
+  
+</div>
+  
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  
+<script>
+var test;
+function handleClick(el){
+  // if (el.classList.contains('sactive')){
+  //   el.classList.replace('sactive','ignore-elements')
+  // }
+  // else {
+  // el.classList.replace('ignore-elements','sactive');}
+}
+
+
+console.log("loaded script file");
+const app = Vue.createApp({
+    data() {
+        return {
+            items1 : [{name:"Item 1", id:"1", description: ''},
+                     {name:"Item 2", id:"2", description: ''},
+                     {name:"Item 3", id:"3", description: ''}],
+            items2 : [{name:"Item 4", id:"4", description: ''},
+                     {name:"Item 5", id:"5", description: ''}],
+            list1: [],
+            list2: [],
+            items: [],
+            // sort1: "",
+            // sort2: "",
+        };
+    },
+    methods: {
+      handleSubmit(){
+        this.list1 = this.list1.map(id => this.getItem(id));
+        this.list2 = this.list2.map(id => this.getItem(id));
+      },
+      updateItem(itemId, value){
+        let index = this.items.findIndex(item => item.id == itemId);
+        if(index > -1){
+          this.items = [
+            ...this.items.slice(0, index),
+            {
+              ...this.items[index],
+              description: value
+            },
+            ...this.items.slice(index + 1)
+          ];
+        }
+      },
+      getItem(itemId) {
+        return this.items.find(item => item.id == itemId);
+      },
+      onSortUpdate: function (evt) {
+            this.list1 = this.sort1.toArray();
+            this.list2 = this.sort2.toArray();
+      },
+      createSortable: function( obj){
+        var sort = Sortable.create(obj, {
+        group: "shared",
+        multiDrag: true,
+        animation: 150,
+        onEnd: this.onSortUpdate,
+        dataIdAttr: 'data-id',
+        avoidImplicitDeselect: false,
+        // filter: ".ignore-elements",
+        selectedClass: "active",
+      });
+      return sort
+      }
+    },
+    mounted() {
+      this.sort1 = this.createSortable(dlist1);
+      this.sort2 = this.createSortable(dlist2);
+      this.list1 = this.items1.map(item => item.id);
+      this.list2 = this.items2.map(item => item.id);
+      this.items = [...this.items1, ...this.items2];
+    }
+
+});
+
+app.mount('#app');
+</script>
+  
+<style>
+  .sactive {background-color: aquamarine;}
+</style>
+  
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- HTML -->
+<div class = "row">
+    <span class="d-flex justify-content-between mb-3 mt-3 col-md-12">
+        <span>
+            <button class="btn btn-dark btn-sm" onclick="toggleCardVisibility('list-vehicles-container');">List Vehicles</button>
+            <button class="btn btn-dark btn-sm" onclick="toggleCardVisibility('list-routes-container');">List Routes</button>
+            <button class="btn btn-dark btn-sm" onclick="toggleCardVisibility('list-points-container');">List Points</button>
+        </span>
+        <span>
+            <button class="btn btn-dark btn-sm ">Vehicle Breakdown</button>
+            <button class="btn btn-primary btn-sm ">Run Optimization</button>
+        </span>
+    </span>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div id="list-vehicles-container" class="container-fluid border-0 rounded-0" style="display: none; position: absolute; top: 0%; left: 2%; width: 95%; height:calc(100vh - 145px); z-index: 1000; padding: 10px; background-color: var(--background-color-green); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h5>Vehicles List</h5>
+        </div>
+
+        <div id="list-routes-container" class="container-fluid border-0 rounded-0" style="display: none; position: absolute; top: 0%; left: 2%; width: 95%; height:calc(100vh - 145px); z-index: 1001; padding: 10px; background-color: var(--background-color-green); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h5>Routes List</h5>
+        </div>
+
+        <div id="list-points-container" class="container-fluid border-0 rounded-0" style="display: none; position: absolute; top: 0%; left: 2%; width: 95%; height:calc(100vh - 145px); z-index: 1002; padding: 10px; background-color: var(--background-color-green); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h5>Points List</h5>
+        </div>
+    </div>
+    <div class="col-md-9"></div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        {% include 'components/map_min.html' %}
+
+
+    </div>
+    
+    <div class="col-md-3">
+        <div id="selected-vehicles-container" class="container-fluid border-0 rounded-0" style="height:calc(100vh - 145px); padding: 10px; background-color: var(--background-color-green); overflow-y:auto; scrollbar-width:none;">
+            <h5>Selected Vehicles</h5>
+            
+                <div id="vehicle-card" class="card mb-3" style="height:auto;background-color: rgba(0, 0, 0, 0.15);">
+                    <span class="mx-1 mt-1">
+                        <h5 id="card-title" class="d-inline-block">Title</h5>
+                        <span class="float-right">
+                          <button class="btn btn-success btn-sm" style="text-align:center;background-color: var(--background-color-green)">+</button>
+                          <button class="btn btn-danger btn-sm border-0" style="text-align:center;background-color: var(--background-color-dark-green)">-</button>
+                        </span>
+                    </span>
+                    <span class="row mx-1">
+                    <span class="col-md-5">
+                      <div>Vehicle Type:</div>
+                      <div>Vehicle Depot:</div>
+                    </span>
+                    <span class="col-md-5">
+                        <div>Vehicle Type:</div>
+                        <div>Vehicle Depot:</div>
+                    </span>
+                    <span class="col-md-2">
+                    </span>
+                    </span>
+                    <button class="btn btn-dark btn-sm my-1 mx-1" style="text-align:center;">Edit</button>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div id="selected-points-container"  class="container-fluid border-0 rounded-0" style="height:calc(100vh - 145px); padding: 10px; background-color: var(--background-color-green); overflow-y:auto; scrollbar-width:none;">
+            <h5 class="card-title">Selected Points</h5>
+
+            
+        </div>
+
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/templates/run_optimization2.js') }}"></script>
+
+<!-- Load Data -->
+<script src="{{ url_for('static', filename='js/data/points_data.js') }}"></script>
+<script src="{{ url_for('static', filename='js/data/vehicles_data.js') }}"></script>
+<script src="{{ url_for('static', filename='js/data/routes_data.js') }}"></script>
+<script src="{{ url_for('static', filename='js/data/depots_data.js') }}"></script>
+<script src="{{ url_for('static', filename='js/data/vehicle_types_data.js') }}"></script>
+{% endblock %}

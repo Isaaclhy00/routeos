@@ -1,0 +1,232 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- HTML -->
+
+<div class="row" id="main-content">
+    <div class="col-3" id="slider-and-window-column">
+        <div id="fleet-route-points-slider" class="slider">
+            <div class="option fleet-route-points-option option-selected" id="btn-fleet">Fleet</div>
+            <div class="option fleet-route-points-option" id="btn-route">Route</div>
+            <div class="option fleet-route-points-option" id="btn-points">Points</div>
+            <div class="indicator" id="fleet-route-points-indicator"></div>
+        </div>
+    
+        <div id="window">
+            <div id="sliding-window">
+
+                <div id="fleet-column" class="column-cards sliding-window-column">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="input-search-cards" id="input-search-vehicle" placeholder="Search...">
+                        </div>
+                        <div class="col-auto ml-auto">
+                            <button class="map-button select-all-button" id="btn-select-all-vehicles" data-state="select-all">Select All</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-9">
+                            <span id="vehicle-cards-count" class="cards-count">0 Vehicles</span>
+                        </div>
+                    </div>
+                    <div id="vehicle-cards-container" class="cards-container">
+                    </div>
+                </div>
+
+                <div id="route-column" class="column-cards sliding-window-column">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="input-search-cards" id="input-search-route" placeholder="Search...">
+                        </div>
+                        <div class="col-auto ml-auto">
+                            <button class="map-button select-all-button" id="btn-select-all-routes" data-state="select-all">Select All</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-9">
+                            <span id="route-cards-count" class="cards-count">0 Routes</span>
+                        </div>
+                    </div>
+                    <div id="route-cards-container" class="cards-container">
+                    </div>
+                </div>
+
+                <div id="points-column" class="column-cards sliding-window-column">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="input-search-cards" id="input-search-points" placeholder="Search...">
+                        </div>
+                        <div class="col-auto ml-auto">
+                            <button class="map-button select-all-button" id="btn-select-all-points" data-state="select-all">Select All</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-9">
+                            <span id="points-cards-count" class="cards-count">0 Points</span>
+                        </div>
+                    </div>
+                    <div id="points-cards-container" class="cards-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-9" id="solver-config-container">
+        <div id="solver-config-top-row">
+            <div class="col">
+                <div class="row" id="solver-config-mode">
+                    <div id="solver-config-mode-slider" class="slider">
+                        <div class="option solver-config-mode-option option-selected" id="solver-config-mode-breakroute" data-mode="breakroute">Break Route</div>
+                        <div class="option solver-config-mode-option" id="solver-config-mode-breakdown" data-mode="breakdown">Break Down</div>
+                        <div class="option solver-config-mode-option" id="solver-config-mode-reshuffle" data-mode="reshuffle">Reshuffle</div>
+                        <div class="indicator" id="solver-config-mode-indicator"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto ml-auto">
+                <!-- <button class="map-button" id="btn-use-clusters">Use Clusters</button> -->
+                <label class="switch" id="toggle-use-clusters">
+                    <span class="use-cluster-slider round">Use Clusters</span>
+                </label>
+            </div>
+            <div class="col-auto ml-auto">
+                <button class="map-button" id="btn-optimize">Optimize</button>
+            </div>
+        </div>
+        <div class="row temproary-restrict-height-vh" id="solver-config">
+            <div id="map" class="col temproary-restrict-height-vh">
+                {% include 'map.html' %}
+            </div>
+            
+            <div class="col temproary-restrict-height-vh">
+                <div id="vehicles-involved-column" class="column-cards">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="input-search-cards" id="input-search-vehicles-involved" placeholder="Search...">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-9">
+                            <span id="vehicles-involved-cards-count" class="cards-count">0 Vehicles Involved</span>
+                        </div>
+                    </div>
+                    <div id="vehicles-involved-cards-container" class="cards-container">
+                    </div>
+                </div>
+            </div>
+
+            <div id="points-involved-columns-container" class="col">
+                <div id="input-search-points-involved-column-containers-container" class="row">
+                    <div class="col">
+                        <input type="text" class="input-search-cards" id="input-search-points-involved-column-containers" placeholder="Search...">
+                    </div>
+                    <div id="points-and-routes-involved-count" class="col-auto ml-auto cards-count"></div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Vehicle loaction/tonnage/time Modal -->
+<div class="modal fade" id="edit-vehicle-location-tonnage-modal" tabindex="-1" role="dialog" aria-labelledby="edit-vehicle-location-tonnage-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-vehicle-location-tonnage-modal-label">Edit Vehicle Details</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-edit-vehicle-route">Route</label>
+                    <select class="form-control" name="input-edit-vehicle-route" id="input-edit-vehicle-route"></select>
+                </div>
+                <div class="form-group">
+                    <label for="input-edit-vehicle-location-lat">Current Lat</label>
+                    <input type="number" class="form-control" name="input-edit-vehicle-location-lat" id="input-edit-vehicle-location-lat" placeholder="Enter current lat">
+                </div>
+                <div class="form-group">
+                    <label for="input-edit-vehicle-location-long">Current Long</label>
+                    <input type="number" class="form-control" name="input-edit-vehicle-location-long" id="input-edit-vehicle-location-long" placeholder="Enter current long">
+                </div>
+                <div class="form-group">
+                    <label for="input-edit-vehicle-tonnage">Current Tonnage</label>
+                    <input type="number" class="form-control" name="input-edit-vehicle-tonnage" id="input-edit-vehicle-tonnage" placeholder="Enter current tonnage">
+                </div>
+                <div class="form-group">
+                    <label for="input-edit-vehicle-manpower">Manpower</label>
+                    <input type="number" class="form-control" name="input-edit-vehicle-manpower" id="input-edit-vehicle-manpower" placeholder="Enter manpower">
+                </div>
+                <div class="form-group">
+                    <label for="input-edit-vehicle-start-time">Start Time</label>
+                    <input type="time" class="form-control" name="input-edit-vehicle-start-time" id="input-edit-vehicle-start-time">
+                </div>
+                <div class="form-group">
+                    <label for="input-edit-vehicle-end-time">End Time</label>
+                    <input type="time" class="form-control" name="input-edit-vehicle-end-time" id="input-edit-vehicle-end-time" value="17:00">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancel-edit-vehicle-location-tonnage" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="btn-confirm-edit-vehicle-location-tonnage" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Collection Point Veh_Type/Tonnage Modal -->
+<div class="modal fade" id="edit-CP-vehType-tonnage-modal" tabindex="-1" role="dialog" aria-labelledby="edit-CP-vehType-tonnage-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-CP-vehType-tonnage-modal-label">Edit Collection Point Details</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input-edit-CP-vehType">Allowed Vehicle Type</label>
+                    <select class="form-control" name="input-edit-CP-vehType" id="input-edit-CP-vehType" multiple></select>
+                </div>
+                <div class="form-group">
+                    <label for="input-edit-CP-tonnage">Current Tonnage</label>
+                    <input type="number" class="form-control" name="input-edit-CP-tonnage" id="input-edit-CP-tonnage" placeholder="Enter current tonnage">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancel-edit-CP-vehType-tonnage" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="btn-confirm-edit-CP-vehType-tonnage" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- IMPORTS -->
+<!-- Load SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+<!-- Load Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" />
+
+<!-- Load Leaflet Draw-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.css" />
+<script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw-src.js"></script>
+
+<!-- Load jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Load Css -->
+<link href="{{ url_for('static', filename='css/templates/run_optimization_original.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/map.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/card.css') }}" rel="stylesheet"/>
+
+<!-- Load Js -->
+<script src="{{ url_for('static', filename='js/mapLogic.js') }}"></script>
+<script src="{{ url_for('static', filename='js/templates/run_optimization_original.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cards.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,101 @@
+<!-- 
+Online HTML, CSS and JavaScript editor to run code online.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sucks</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  
+  <div>Hi</div>
+  
+<div id="app">
+
+  <div class ="row">
+
+  <div id="dlist1" class="list-group col-md-6" style="height:50vh;background-color: aqua;" @drop="handleDrop($event, 'dlist1')">
+    <div v-for="id in list1" :key="id" class="list-group-item ignore-elements" :data-id="id" :draggable="isDraggable(id)" @dragstart="handleDragStart($event, 'list1', item)">
+      {{ getItemName(id) }}
+    </div>
+  </div>
+  
+
+  <div id="dlist2" class="list-group col-md-6"  style="height:50vh;background-color:antiquewhite;" @drop="handleDrop($event, 'dlist2')">
+    <div v-for="id in list2" :key="id" class="list-group-item ignore-elements" :data-id="id" :draggable="isDraggable(id)" @dragstart="handleDragStart($event, 'list2', item)">
+      {{ getItemName(id) }}
+    </div>
+  </div>
+
+  </div>
+
+  <!-- <pre>{{$data.items}}</pre> -->
+  <pre style="background-color: whitesmoke;">{{list1}}</pre>
+  <pre style="background-color: whitesmoke;">{{list2}}</pre>
+
+  
+</div>
+  
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  
+<script>
+var test;
+
+
+console.log("loaded script file");
+const app = Vue.createApp({
+    data() {
+        return {
+            list1: [1,2,3],
+            list2: [4,5],
+            items : [{name:"Item 1", id:"1"},
+                     {name:"Item 2", id:"2"},
+                     {name:"Item 3", id:"3"},
+                     {name:"Item 4", id:"4"},
+                     {name:"Item 5", id:"5"}]
+            // sort1: "",
+            // sort2: "",
+        };
+    },
+    methods: {
+      handleDragStart(event, item) {
+        this.style.opacity = '0.4';
+      // Set the data being dragged
+      console.log(event);
+      event.dataTransfer.setData('text/plain', item);
+    },
+      isDraggable(item){
+        console.log(item == '1')
+        return item == '1'
+      },
+      getItemName(itemId) {
+                    const item = this.items.find(item => item.id == itemId);
+                    return item.name?item.name:"";
+                },
+    },
+    mounted() {
+    }
+
+});
+
+app.mount('#app');
+</script>
+  
+<style>
+  .sactive {background-color: aquamarine;}
+  .draggable {touch-action: none;}
+</style>
+  
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Optimization</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="dark-mode"> 
+    <!-- Include the loading screen -->
+    {% include 'loading_screen.html' %}
+    
+    <nav class="navbar navbar-expand-lg sticky-top" id="navbar"> 
+        <button class="navbar-toggler" id="btn-toggle-sidebar" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="{{ url_for('static', filename='icons/icons8-menu-32.png') }}" alt="Sidebar">
+        </button>
+        <b class="navbar-brand" id="page-name" href="/">RouteOS</b>
+    </nav>
+
+    <nav id="sidebar" class="sidebar-hidden">
+        <div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/" data-name="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/simple_optimization" data-name="Simple Optimization">Simple Optimization</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/free_optimization" data-name="Free Optimization">Free Optimization</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/edit_optimization" data-name="Review Optimization">Review Optimization</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_fleet" data-name="Edit Fleet">Edit Fleet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_locations" data-name="Edit Locations">Edit Locations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_clusters" data-name="Edit Clusters">Edit Clusters</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/guide" data-name="Guide">Guide</a>
+                </li>
+                <!-- Dummy nav-items to help with scrolling on smaller window sizes-->
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/getoab" data-name="GeoTab">GeoTab</a>
+                </li> -->
+            </ul>
+        </div>  
+    </nav>
+    
+    <div class="content" id="page-content"> 
+        <div class="container-fluid" id="block-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename='css/templates/layout.css') }}" rel="stylesheet"/>
+    <script src="{{ url_for('static', filename='js/templates/layout.js') }}"></script>
+
+    <!-- Load Data -->
+    <script src="{{ url_for('static', filename='js/data/clusters_data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/data/depots_data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/data/points_data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/data/routes_data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/data/vehicle_types_data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/data/vehicles_data.js') }}"></script>
+</body>
+</html>

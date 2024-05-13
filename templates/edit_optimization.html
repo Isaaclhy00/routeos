@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<style>
+    #map {
+    height: calc(100vh - 145px);
+    width: 100vw;
+    }
+    .list-group-item {display: flex}
+    .DP-item,
+    .IP-item{background-color: black; color: white; width: 100%; height: 100%; position: absolute;top: 0;left: 0;Pointer-events: none;}
+    .sactive{background-color: var(--background-color-green);}
+    .sortable-chosen{background-color: var(--background-color-green);}
+    .outlier{background-color: red;}
+</style>
+
+<!-- Load SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+<!-- Load Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" />
+<!-- https://github.com/Zahidul-Islam/Leaflet.awesome-numbered-marker/blob/master/README.md -->
+<link rel="stylesheet" href="{{ url_for('static', filename='leaflet_markers/leaflet_awesome_number_markers.css') }}" />
+<script src="{{ url_for('static', filename='leaflet_markers/leaflet_awesome_number_markers.js') }}"></script>
+<!-- Load Sortable -->
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+<!-- Load Vue -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+
+<div id="app" class="row">
+    <div class="col-md-6">
+        <h2 class="mb-3" style="color: black;">Optimization Run: {{run_number}}</h2>
+        <div id="map" class="col-md-12"></div>
+    </div>
+
+    <div class="col-md-6">
+        <h2 class="mb-3" style="color: black;">Timetable</h2>
+        <span class="d-flex justify-content-between mb-3">
+            <span>
+                <!-- <button class="btn btn-primary btn-sm mx-1">Recalculate</button> -->
+                <!-- <button class="btn btn-primary btn-sm mx-1">Revert Optimization</button> -->
+            </span>
+            <span>
+                <button class="btn btn-dark btn-sm mx-1" @click="dlExcel()">Download Routes</button>
+                <!-- <button class="btn btn-dark btn-sm mx-1">Deploy to Drivers</button> -->
+            </span>
+        </span>
+        
+        <div class="col-md-12">
+        <div id="sortableContainer" class="row">
+            <div class="col-md-12 mb-1">
+            <select v-model="selectedVehicle" class="form-select form-select-sm" style="width: 20vw"  @change="updateSelectedVehicle">
+                <option disabled value="">Select Vehicle</option>
+                <option v-for="vehicle in Object.keys(opt.assignment).slice(0,-1)" :key="vehicle" :value="vehicle">{[ vehicle ]}</option>
+            </select>
+            </div>
+            
+            <div class="col-md-12 mb-1 row">
+                <div class="col-md-6 mb-1">
+                    <span id="routeListName"><b>Vehicle</b></span>
+                    <br>
+                    <span v-if="selectedVehicle">Max: {[ $data.vehicleCapacity[selectedVehicle] ]}kg | {[ $data.vehicleManpower[selectedVehicle] ]}mp  
+                        <br>{[$data.routeTonnage[selectedVehicle]]} kg |  {[ $data.routeManpower[selectedVehicle] ]} mp | RTU {[ $data.routeTime[selectedVehicle][$data.routeTime[selectedVehicle].length-1] ]} hrs</span>
+                    <!-- <span>{[$data.test]}</span> -->
+
+                </div>
+                <div class="col-md-6 mb-1">
+                    <span id="routeListName"><b>Unassigned</b></span>
+                    <br>
+                </div>
+            </div>
+            
+            <div class="row col-md-12">
+                <!-- <span>{[$data.map2loc['unassigned']]}</span> -->
+            <div class="col-md-6 container-fluid mb-1" style="height:73vh;overflow-y:auto;scrollbar-width:none;" >
+              <div v-for="(vehicle, index) in Object.keys(opt.assignment).slice(0,-1)" :key="index" :id="'routeList'+index" class="list-group" v-show="selectedVehicle && selectedVehicle == vehicle" style="height:73vh;width:20vw">
+                <!-- <span>{[$data.map2loc[$data.selectedVehicle]]}</span>
+                <span>{[ $data.routeSort ]}</span> -->
+                <div v-for="(item, index) in map2loc[selectedVehicle]" :key="item" :class="{ 'list-group-item':true,'outlier':routeOutlier[selectedVehicle][index] }" :data-id="item" :id="'Point'+item">
+                    <div v-if="locations[item] === 'DP'" class="DP-item">DP</div>
+                    <div v-else-if="locations[item] === 'IP'" class="IP-item">IP</div>
+                    <div v-else-if="$data.opt.points.House[locations[item]]" class="item">
+                        {[ $data.routeOrder[selectedVehicle][index] ]} &nbsp &nbsp &nbsp &nbsp {[ $data.opt.total_routes.Name[$data.opt.points.Vehicle_ID[locations[item]]] ]} &nbsp &nbsp &nbsp &nbsp {[ $data.routeTime[selectedVehicle][index] ]}<br>
+                        <b>{[ $data.opt.points.House[locations[item]] ]} &nbsp {[ $data.opt.points.Street[locations[item]] ]} {[ $data.opt.points.Alias[locations[item]] ]} </b>
+                        <br> {[ $data.opt.points.Premises[locations[item]] ]} &nbsp {[ $data.opt.points.Tonnage_kg[locations[item]] ]} kg &nbsp {[ $data.opt.points.Manpower[locations[item]] ]} mp &nbsp C{[ $data.opt.points.Network_Cluster[locations[item]] ]} &nbsp {[ $data.opt.points.Vehicle_Type_Allowed[locations[item]] ]} &nbsp {[ $data.opt.points.Min_Collection_Time_hrs[locations[item]] ]}-{[ $data.opt.points.Max_Collection_Time_hrs[locations[item]] ]} 
+                        <!-- put routeID here... but need to send it in human readable form -->
+                    </div>
+                </div>
+              </div>
+            </div>
+            
+            <div  class="col-md-6 container-fluid mb-1" style="height:73vh;overflow-y:auto;scrollbar-width:none;">
+                <div id="unassignedList" class="list-group" style="height:73vh;width:20vw">
+                    <!-- <span> {[ $data.map2loc['unassigned'] ]}</span>
+                    <span>{[$data.uaSort]}</span> -->
+                  <div v-for="item in map2loc['unassigned']" :key="item" class="list-group-item" :data-id="item" :id="'Point'+item">
+                    <div v-if="locations[item] === 'DP'" class="DP-item">DP</div>
+                    <div v-else-if="locations[item] === 'IP'" class="IP-item">IP</div>
+                    <div v-else-if="$data.opt.points.House[locations[item]]" class="item">
+                        U &nbsp &nbsp &nbsp &nbsp {[ $data.opt.total_routes.Name[$data.opt.points.Vehicle_ID[locations[item]]] ]}<br>
+                        <b>{[ $data.opt.points.House[locations[item]] ]} &nbsp {[ $data.opt.points.Street[locations[item]] ]} {[ $data.opt.points.Alias[locations[item]] ]} </b>
+                        <br> {[ $data.opt.points.Premises[locations[item]] ]} &nbsp {[ $data.opt.points.Tonnage_kg[locations[item]] ]} kg &nbsp {[ $data.opt.points.Manpower[locations[item]] ]} mp &nbsp C{[ $data.opt.points.Network_Cluster[locations[item]] ]} &nbsp {[ $data.opt.points.Vehicle_Type_Allowed[locations[item]] ]} &nbsp {[ $data.opt.points.Min_Collection_Time_hrs[locations[item]] ]}-{[ $data.opt.points.Max_Collection_Time_hrs[locations[item]] ]} 
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    var optData = {{ opt_json | tojson | safe }} ;
+    optData = JSON.parse(optData);
+</script>
+<script src="{{ url_for('static', filename='js/templates/edit_optimization.js') }}"></script>
+
+
+
+{% endblock %}

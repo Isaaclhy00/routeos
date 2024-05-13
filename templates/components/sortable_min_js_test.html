@@ -1,0 +1,138 @@
+<!-- 
+Online HTML, CSS and JavaScript editor to run code online.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sucks</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+</head>
+
+<body>
+  
+  <div>Hi</div>
+  
+<div id="app">
+
+  <div class ="row">
+
+  <div id="dlist1" class="list-group col-md-6" style="height:50vh;background-color: aqua;">
+    <!-- <div v-for="id in list1" class="list-group-item" :data-id="id">
+      {{ getItemName(id) }}
+    </div> -->
+  </div>
+  
+
+  <div id="dlist2" class="list-group col-md-6"  style="height:50vh;background-color:antiquewhite;">
+    <!-- <div v-for="id in list2" class="list-group-item" :data-id="id">
+      {{ getItemName(id) }}
+    </div> -->
+  </div>
+
+  </div>
+
+  <pre id="items">{{$data.items}}</pre>
+  <pre id="list1" style="background-color: whitesmoke;">{{list1}}</pre>
+  <pre id="list2" style="background-color: whitesmoke;">{{list2}}</pre>
+
+  
+</div>
+
+  
+<script>
+
+var items = [{name:"Item 1", id:"1"},
+            {name:"Item 2", id:"2"},
+            {name:"Item 3", id:"3"},
+            {name:"Item 4", id:"4"},
+            {name:"Item 5", id:"5"}]
+
+var list1 = [1,2,3]
+var list2 = [4,5]
+var sort1;
+var sort2;
+var test;
+
+function getItemName(itemId) {
+      const item = this.items.find(item => item.id == itemId);
+      return item.name?item.name:"";
+  }
+
+function drawlist(elementid, list){
+  const container = document.getElementById(elementid);
+  container.replaceChildren();
+  list.forEach(id => {
+    const listItem = document.createElement('div');
+    listItem.classList.add('list-group-item');
+    listItem.dataset.id = id;
+    listItem.textContent = getItemName(id);
+    container.appendChild(listItem);
+})}
+
+function makeSortable(element){
+var sort = Sortable.create(element, {
+group: { name: "shared", pull: ['shared'], put: ['shared'] },
+multiDrag: false,
+selectedClass: "active",
+delay: 0,
+animation: 150,
+onEnd: onSortUpdate,
+dataIdAttr: 'data-id',
+// onMove: function(evt){return true?evt.dragged.classList.contains("active"):false}
+});
+return sort
+}
+
+document.getElementById('dlist1').addEventListener("load", drawlist('dlist1',list1));
+
+document.getElementById('dlist2').addEventListener("load", drawlist('dlist2',list2));
+
+sort1 = makeSortable(document.getElementById('dlist1'))
+sort2 = makeSortable(document.getElementById('dlist2'))
+
+function onSortUpdate(evt){
+
+  let lista = []
+  $("#dlist1").children().each(function(index, element) {
+  // Use $(element) to wrap the DOM element in a jQuery object
+  const dataId = $(element).attr('data-id');
+  
+  // Push the data-id attribute value to the 'lista' array
+  lista.push(dataId);
+});
+
+let listb = []
+  $("#dlist2").children().each(function(index, element) {
+  // Use $(element) to wrap the DOM element in a jQuery object
+  const dataId = $(element).attr('data-id');
+  
+  // Push the data-id attribute value to the 'lista' array
+  listb.push(dataId);
+});
+
+
+  sort1.destroy()
+  sort2.destroy()
+  drawlist('dlist1',lista)
+  drawlist('dlist2',listb)
+  sort1 = makeSortable(document.getElementById('dlist1'));
+  sort2 = makeSortable(document.getElementById('dlist2'));
+  document.getElementById("items").innerHTML = JSON.stringify(items)
+  document.getElementById('list1').innerHTML = list1
+  document.getElementById('list2').innerHTML = list2
+}
+
+
+</script>
+  
+  
+</body>
+
+</html>

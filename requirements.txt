@@ -1,0 +1,14 @@
+Flask
+folium==0.14.0
+matplotlib==3.7.2
+mygeotab==0.8.8
+numpy==1.24.4
+ortools==9.7.2996
+pandas==1.5.3
+scikit_learn==1.3.0
+tqdm
+geopandas==0.14.4
+shapely==2.0.4
+flask_dance==7.1.0
+azure-keyvault == 4.2.0
+azure-identity == 1.15.0

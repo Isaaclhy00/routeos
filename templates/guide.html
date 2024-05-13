@@ -1,0 +1,508 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<body>
+    <div class="row mx-auto" id="navbar-buttons-container">
+        <div class="col-auto">
+            <button class="map-button" id="btn-reset=all-data" data-section="reset=all-data-section">Reset All Data</button>
+        </div>
+        <div class="col-auto">
+            <button class="map-button" id="btn-simple-optimization" data-section="simple-optimization-section">Simple Optimization</button>
+        </div>
+        <div class="col-auto">
+            <button class="map-button" id="btn-free-optimization" data-section="free-optimization-section">Free Optimization</button>
+        </div>
+        <div class="col-auto">
+            <button class="map-button" id="btn-review-optimization" data-section="review-optimization-section">Review Optimization</button>
+        </div>
+        <div class="col-auto">
+            <button class="map-button" id="btn-edit-fleet" data-section="edit-fleet-section">Edit Fleet</button>
+        </div>
+        <div class="col-auto">
+            <button class="map-button" id="btn-edit-locations" data-section="edit-locations-section">Edit Locations</button>
+        </div>
+        <div class="col-auto">
+            <button class="map-button" id="btn-edit-clusters" data-section="edit-clusters-section">Edit Clusters</button>
+        </div>
+    </div>
+
+    <main id="guide-sections-container">
+
+        <div class="guide-section" id="reset=all-data-section">
+            <div class="row guide-section-top-row">
+                <div class="col-auto">
+                    <div class="guide-section-title">Reset All Data</div>
+                </div>
+            </div>
+
+            <div class="guide-section-content">
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">To reset all Depots, Vehicle Types, Routes, Vehicles, Points, and Clusters, enter 
+                        <a href="/reset_all_data">https://azsgp-wac-swm-dev.azurewebsites.net/reset_all_data</a> into the address bar.
+                        Afterwards, remember to refresh to see the changes!
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/reset-all-data-address-bar.jpg" alt="reset-all-data-address-bar">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section" id="simple-optimization-section">
+            <div class="row guide-section-top-row">
+                <div class="col-auto">
+                    <div class="guide-section-title"><a href="/simple_optimization">Simple Optimization</a></div>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-simple-optimization-breakroute" data-section="simple-optimization-section-breakroute-subsection">Break Route</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-simple-optimization-breakdown" data-section="simple-optimization-section-breakdown-subsection">Break Down</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-simple-optimization-reshuffle" data-section="simple-optimization-section-reshuffle-subsection">Reshuffle</button>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="simple-optimization-section-breakroute-subsection">
+                <div class="guide-section-subtitle">Break Route</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">To choose the Break Route scenario, ensure the slider is at the "Break Route" position.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-slider-breakroute.jpg" alt="simple-optimization-slider-breakroute">
+                    </div>
+                    <div class="guide-section-content-text">Routes to be broken go in the middle, Routes to optimize go on the right, Routes not to be considered by the optimizer stay 
+                        on the left, in the example below, R16 points will be broken into the R17, R18, and R20.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-breakroute-routes-layout.jpg" alt="simple-optimization-breakroute-routes-layout">
+                    </div>
+                    <div class="guide-section-content-text">Select which Routes to break by clicking the <button class="red-button">Break</button> buttons.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-breakroute-break-button.jpg" alt="simple-optimization-breakroute-break-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Select which Routes to optimize by clicking the <button class="blue-button">Optimize</button> buttons.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-breakroute-optimize-button.jpg" alt="simple-optimization-breakroute-optimize-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Select which Routes to remove from the optimizer by clicking the <button class="black-button">Remove</button> buttons.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-breakroute-remove-button.jpg" alt="simple-optimization-breakroute-remove-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Quickly remove all routes by clicking the <button class="map-button">Reset</button> button.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-reshuffle-reset-routes-button.jpg" alt="simple-optimization-reshuffle-reset-routes-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Choose whether to use clusters when optimizing. Using clusters will result in a faster run time but may yield less optimal results. Finally, click <button class="map-button">Optimize</button> to start the opimitzation!</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-use-clusters-button.jpg" alt="simple-optimization-use-clusters-button">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="simple-optimization-section-breakdown-subsection">
+                <div class="guide-section-subtitle">Break Down</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">To choose the Break Down scenario, ensure the slider is at the "Break Down" position.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-slider-breakdown.jpg" alt="simple-optimization-slider-breakroute">
+                    </div>
+                    <div class="guide-section-content-text">Routes to be broken go in the middle, Routes to optimize go on the right, Routes not to be considered by the optimizer stay 
+                        on the left, in the example below, R16 points will be broken into the R17, R18, and R20.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-breakroute-routes-layout.jpg" alt="simple-optimization-breakroute-routes-layout">
+                    </div>
+                    <div class="guide-section-content-text">Select which Routes to break by clicking the <button class="red-button">Break</button> buttons.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-breakroute-break-button.jpg" alt="simple-optimization-reshuffle-routes-reshuffle-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Select which Routes to optimize by clicking the <button class="blue-button">Optimize</button> buttons.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-breakroute-optimize-button.jpg" alt="simple-optimization-reshuffle-routes-reshuffle-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Select which Routes to remove from the optimizer by clicking the <button class="black-button">Remove</button> buttons.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-breakroute-remove-button.jpg" alt="simple-optimization-reshuffle-routes-reshuffle-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Quickly remove all routes by clicking the <button class="map-button">Reset</button> button.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-reshuffle-reset-routes-button.jpg" alt="simple-optimization-reshuffle-routes-remove-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Choose whether to use clusters when optimizing. Using clusters will result in a faster run time but may yield less optimal results. Finally, click <button class="map-button">Optimize</button> to start the opimitzation!</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-use-clusters-button.jpg" alt="simple-optimization-reshuffle-routes-remove-button">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="simple-optimization-section-reshuffle-subsection">
+                <div class="guide-section-subtitle">Reshuffle</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">To choose the Reshuffle scenario, ensure the slider is at the "Reshuffle" position.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-slider-reshuffle.jpg" alt="simple-optimization-slider-reshuffle">
+                    </div>
+                    <div class="guide-section-content-text">Routes to be Reshuffled go on the right, Routes not to be considered by the optimizer stays on the left.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-reshuffle-routes-layout.jpg" alt="simple-optimization-reshuffle-routes-layout">
+                    </div>
+                    <div class="guide-section-content-text">Select which Routes to reshuffle by clicking the <button class="blue-button">Reshuffle</button> button.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-reshuffle-routes-reshuffle-button.jpg" alt="simple-optimization-reshuffle-routes-reshuffle-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Remove the Route from the Optimizer by clicking the <button class="black-button">Remove</button> button.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-reshuffle-routes-remove-button.jpg" alt="simple-optimization-reshuffle-routes-remove-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Quickly remove all routes by clicking the <button class="map-button">Reset</button> button.</div>
+                    <!-- <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-reshuffle-reset-routes-button.jpg" alt="simple-optimization-reshuffle-reset-routes-button">
+                    </div> -->
+                    <div class="guide-section-content-text">Choose whether to use clusters when optimizing. Using clusters will result in a faster run time but may yield less optimal results. Finally, click <button class="map-button">Optimize</button> to start the opimitzation!</div>
+                    <div class="centered-image">
+                        <img src="../static/images/simple_optimization_screenshots/simple-optimization-use-clusters-button.jpg" alt="imple-optimization-use-clusters-button">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section" id="free-optimization-section">
+            <div class="guide-section-title"><a href="/free_optimization">Free Optimization</a></div>
+            <div class="guide-section-content">
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+            </div>
+        </div>
+
+        <div class="guide-section" id="review-optimization-section">
+            <div class="guide-section-title"><a href="/review_optimization">Review Optimization</a></div>
+            <div class="guide-section-content">
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+                <div>words</div>
+            </div>
+        </div>
+
+        <div class="guide-section" id="edit-fleet-section">
+            <div class="row guide-section-top-row">
+                <div class="col-auto">
+                    <div class="guide-section-title"><a href="/edit_fleet">Edit Fleet</a></div>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-fleet-depots" data-section="edit-fleet-section-fleet-subsection">Depots</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-veh-types" data-section="edit-fleet-section-veh-types-subsection">Vehicle Types</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-routes" data-section="edit-fleet-section-routes-subsection">Routes</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-vehicles" data-section="edit-fleet-section-vehicles-subsection">Vehicles</button>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-fleet-section-fleet-subsection">
+                <div class="guide-section-subtitle">Depots</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">All Depots will be displayed in the first column.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_fleet_screenshots/edit-fleet-depots.jpg" alt="edit-fleet-depots">
+                    </div>
+                    <div class="guide-section-content-text">Click on an existing Depot to edit it, or click <button class="map-button">Create Depot</button> to create a new Depot.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_fleet_screenshots/edit-fleet-depots-edit.jpg" alt="edit-fleet-depots-edit">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-fleet-section-veh-types-subsection">
+                <div class="guide-section-subtitle">Vehicle Types</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">All Vehicle Types will be displayed in the second column.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_fleet_screenshots/edit-fleet-veh-types.jpg" alt="edit-fleet-veh-types">
+                    </div>
+                    <div class="guide-section-content-text">Click on an existing Vehicle Type to edit it, or click <button class="map-button">Create Vehicle Type</button> to create a new Vehicle Type.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_fleet_screenshots/edit-fleet-veh-types-edit.jpg" alt="edit-fleet-veh-types-edit">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-fleet-section-routes-subsection">
+                <div class="guide-section-subtitle">Routes</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">All Routes will be displayed in the third column.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_fleet_screenshots/edit-fleet-routes.jpg" alt="edit-fleet-routes">
+                    </div>
+                    <div class="guide-section-content-text">Click on an existing Route to edit it, or click <button class="map-button">Create Route</button> to create a new Route.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_fleet_screenshots/edit-fleet-routes-edit.jpg" alt="edit-fleet-routes-edit">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-fleet-section-vehicles-subsection">
+                <div class="guide-section-subtitle">Vehicles</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">All Vehicles will be displayed in the last column.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_fleet_screenshots/edit-fleet-vehicles.jpg" alt="edit-fleet-vehicles">
+                    </div>
+                    <div class="guide-section-content-text">Click on an existing Vehicle to edit it, or click <button class="map-button">Create Vehicle</button> to create a new Vehicle.</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_fleet_screenshots/edit-fleet-vehicles-edit.jpg" alt="edit-fleet-vehicles-edit">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section" id="edit-locations-section">
+            <div class="row guide-section-top-row">
+                <div class="col-auto">
+                    <div class="guide-section-title"><a href="/edit_locations">Edit Locations</a></div>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-locations-adding-points" data-section="edit-locations-adding-points-subsection">Adding Points</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-locations-edit-delete-points" data-section="edit-locations-edit-delete-points-subsection">Edit/Delete Points</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-locations-geotab" data-section="edit-locations-geotab-subsection">Plot from Geotab</button>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-locations-adding-points-subsection">
+                <div class="guide-section-subtitle">Adding Points</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">Click <button class="map-button">Upload Excel</button> button to upload a batch of points. Or, right-click
+                    on the map to add a new point at that location. When adding by right-click, you may drag the marker around to the desired location. 
+                </div>
+
+                <div class="guide-section-content-text">Be sure to cick 
+                    <button class="btn btn-primary">Save</button> to save the point, else it will be deleted!</div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_location_screenshots/edit-locations-right-click-add-new-point.jpg" alt="edit-locations-right-click-add-new-point">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-locations-edit-delete-points-subsection">
+                <div class="guide-section-subtitle">Edit/Delete Points</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">
+                        Click on any marker on the map, or the Collection Point Cards on the right to show the overlay. The current marker will be highlighted with a red circle
+                        under it.
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Click <button class="btn overlay-top-btn btn-overlay-delete" id="btn-delete-cp" title="Delete Collection Point">
+                            <img src="{{ url_for('static', filename='icons/icons8-delete-16.png') }}" alt="Delete">
+                        </button> button to delete a point. Point will only be deleted after clicking on <button type="button" class="btn btn-danger">Delete</button> button.
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Click <button class="btn overlay-top-btn btn-overlay-edit" id="btn-edit-cp" title="Edit Collection Point">
+                            <img src="{{ url_for('static', filename='icons/icons8-edit-16.png') }}" alt="Edit">
+                        </button> button to edit. Type into the white boxes to edit the data, or use the dropdown menus for selected fields. You may also drag the marker around 
+                        to the desired location. The Latitude and Longtitude of the marker will be automatically calculated.
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Click <button class="btn btn-secondary">Cancel</button> to cancel your changes. 
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Be sure to click <button class="btn btn-primary">Save</button> button to save the changes!
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Click <button class="btn overlay-top-btn btn-close-overlay" id="btn-close-cp-overlay" title="Close">
+                            <img src="{{ url_for('static', filename='icons/icons8-close-16.png') }}" alt="Close">
+                        </button> button to close the overlay. This will cancel any unsved changes.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_location_screenshots/edit-locations-focus-point.jpg" alt="edit-locations-focus-point">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-locations-geotab-subsection">
+                <div class="guide-section-subtitle">Plot from Geotab</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">
+                        Click <button class="map-button">Plot From Geotab</button> button to plot historic data from Geotab.
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Select the Vehicle Number from the dropdown menu, along with the start and end dates from the calendar. Click <button class="btn btn-primary">Plot</button>
+                        to plot the daily estimated stopping points for the selected vehicle between the selected dates. If there is an error message, try plotting again, or change
+                        the vehicle/dates and trya again. Once plotting is done, points do not show up yet! Click the layer control on the top right corner of the map and select the
+                        dates you wish to display. You may also use the search bar above the cards to filter by Route Number.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_location_screenshots/edit-locations-map-layer-control.jpg" alt="edit-locations-map-layer-control" style="margin-right: 15px;">
+                        <img src="../static/images/edit_location_screenshots/edit-locations-map-layer-control-dates.jpg" alt="edit-locations-map-layer-control-dates">
+                    </div>
+                    <div class="guide-section-content-text">
+                        Blue markers are the Collection Points. Small red circles are the estimated stopping points.
+                    </div>
+                    <div class="centered-image" style="justify-content: space-evenly;">
+                        <img src="../static/images/edit_location_screenshots/edit-locations-geotab-example.jpg" alt="edit-locations-geotab-example">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-section" id="edit-clusters-section">
+            <div class="row guide-section-top-row">
+                <div class="col-auto">
+                    <div class="guide-section-title"><a href="/edit_clusters">Edit Clusters</a></div>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-clusters-create-cluster" data-section="edit-clusters-create-cluster-subsection">Create Cluster</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-clusters-edit-delete-cluster" data-section="edit-clusters-edit-delete-cluster-subsection">Edit/Delete Cluster</button>
+                </div>
+                <div class="col-auto">
+                    <button class="map-button blue-button margin-top-10" id="btn-edit-clusters-add-remove-cp" data-section="edit-clusters-add-remove-cp-subsection">Add/Remove Collection Point</button>
+                </div>
+            </div>
+
+            <div class="guide-section-content">
+                <div class="guide-section-content-text">
+                    Each small circle represents a collection point, each colour represents a cluster. All Clusters can be found in the Cluster column on the right. All 
+                    Collection Points can be found in the Collection Points Column on the right. Click <button class="map-button">Unclustered Points</button> to display
+                    points that are not part of a cluster.
+                </div>
+                <div class="centered-image">
+                    <img src="../static/images/edit_clusters_screenshots/edit-clusters-full-map.jpg" alt="edit-clusters-full-map">
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-clusters-create-cluster-subsection">
+                <div class="guide-section-subtitle">Create Cluster</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">
+                        Click <button class="map-button">Create New Cluster</button> button to creat a new cluster. Only the Cluster Name can be set, the rest will be automatically
+                        calculated. 
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Be sure to cick <button class="btn btn-primary">Save</button> to save the cluster, else it will be deleted!
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_clusters_screenshots/edit-clusters-create-cluster-overlay.jpg" alt="edit-clusters-create-cluster-overlay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-clusters-edit-delete-cluster-subsection">
+                <div class="guide-section-subtitle">Edit/Delete Cluster</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">
+                        Click on a Cluster Card to select the Cluster.
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Click <button class="btn overlay-top-btn btn-overlay-delete" id="btn-delete-cp" title="Delete Collection Point">
+                            <img src="{{ url_for('static', filename='icons/icons8-delete-16.png') }}" alt="Delete">
+                        </button> button to delete a cluster. Cluster will only be deleted after clicking on <button type="button" class="btn btn-danger">Delete</button> button. 
+                        All Collection Points that belonged to this cluster will now be Unclustered, click <button class="map-button">Unclustered Points</button> to find these points.
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Click <button class="btn overlay-top-btn btn-overlay-edit" id="btn-edit-cp" title="Edit Collection Point">
+                            <img src="{{ url_for('static', filename='icons/icons8-edit-16.png') }}" alt="Edit">
+                        </button> button to edit. Only the Cluster Name can be set, the rest will be automatically
+                        calculated.
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Click <button class="btn btn-secondary">Cancel</button> to cancel your changes. 
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Be sure to click <button class="btn btn-primary">Save</button> button
+                        to save the changes!
+                    </div>
+
+                    <div class="guide-section-content-text">
+                        Click <button class="btn overlay-top-btn btn-close-overlay" id="btn-close-cp-overlay" title="Close">
+                            <img src="{{ url_for('static', filename='icons/icons8-close-16.png') }}" alt="Close">
+                        </button> button to close the overlay. This will cancel any unsved changes.
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_clusters_screenshots/edit-clusters-edit-cluster-overlay.jpg" alt="edit-clusters-edit-cluster-overlay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-section-content" id="edit-clusters-add-remove-cp-subsection">
+                <div class="guide-section-subtitle">Add/Remove Collection Point</div>
+                <div class="guide-section-content">
+                    <div class="guide-section-content-text">
+                        Click on a Cluster Card to select the Cluster. The Collection Points in the Cluster will appear in the "Cluster Collection Points" container on top. 
+                        The Collection Points not in the Cluster will appear in the "All Collection Points" container on bottom. 
+                    </div>
+                    <div class="centered-image">
+                        <img src="../static/images/edit_clusters_screenshots/edit-clusters-drag-drop.jpg" alt="edit-clusters-drag-drop">
+                    </div>
+
+                    <div class="guide-section-subtitle">Add</div>
+                    <div class="guide-section-content">
+                        <div class="guide-section-content-text">
+                            Drag the Collection Point Card from the "All Collection Points" container into the "Cluster Collection Points" container to add the Collection Point
+                            to the Cluster.
+                        </div>
+                        <div class="centered-image">
+                            <img src="../static/images/edit_clusters_screenshots/edit-clusters-drag-drop-all-to-cluster.jpg" alt="edit-clusters-drag-drop-all-to-cluster">
+                        </div>
+
+                        <div class="guide-section-content-text">
+                            Drag the Collection Point Card from the "All Collection Points" container or "Cluster Collection Points" container into any Cluster Card on the right to add the Collection Point
+                            directly to the Cluster.
+                        </div>
+                        <div class="centered-image">
+                            <img src="../static/images/edit_clusters_screenshots/edit-clusters-drag-drop-both-to-cluster.jpg" alt="edit-clusters-drag-drop-both-to-cluster">
+                        </div>
+                    </div>
+
+                    <div class="guide-section-subtitle">Remove</div>
+                    <div class="guide-section-content">
+                        <div class="guide-section-content-text">
+                            Drag the Collection Point Card from the "Cluster Collection Points" container into the "All Collection Points" container to set the Collection Point
+                            as Unclustered.
+                        </div>
+                        <div class="centered-image">
+                            <img src="../static/images/edit_clusters_screenshots/edit-clusters-drag-drop-cluster-to-all.jpg" alt="edit-clusters-drag-drop-cluster-to-all">
+                        </div>
+                    </div>
+                    
+                    <div class="guide-section-content-text">
+                        Be sure to click <button class="btn btn-primary">Save</button> button
+                        to save the changes!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+<link href="{{ url_for('static', filename='css/templates/guide.css') }}" rel="stylesheet"/>
+
+<script src="{{ url_for('static', filename='js/templates/guide.js') }}"></script>
+{% endblock %}

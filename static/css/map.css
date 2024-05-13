@@ -1,0 +1,156 @@
+@import url('app_variables.css');
+
+.leaflet-div-icon {
+    margin-left: -4px !important;
+    margin-top: -4px !important;
+    width: 8px !important;
+    height: 8px !important;
+}
+
+.leaflet-top {
+    z-index: 999 !important;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Overlay */
+.overlay-buttons-top-row {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    z-index: 1100;
+}
+
+.overlay-content {
+    padding: 10px;
+    height: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--background-color-green);
+}
+
+.overlay-top-btn {
+    padding: 5px;
+    padding-top: 0px;
+    margin: -16px;
+    border-radius: 5px;
+}
+
+.overlay-title {
+    margin-left: 10px;
+    font-size: medium;
+}
+
+.btn-overlay-edit {
+    background-color: #66ff00;
+}
+
+.btn-overlay-delete {
+    background-color: #ff5a5a;
+}
+
+.btn-close-overlay {
+    background-color: #636363;
+}
+
+.overlay-save-cancel-buttons-row {
+    width: 100%;
+    margin-left: 0px;
+    padding-bottom: 5px;
+}
+
+.editable {
+    outline: none;
+    resize: none;
+    background-color: #ffffff;
+    color: #000000;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.overlay-row-item {
+    padding: 2px;
+    display: flex;
+    flex: 0 2 50%;
+    flex-direction: column;
+    margin-bottom: 2px;
+}
+
+
+/* CP Overlay */
+#cp-overlay {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    background-color: var(--background-color-green);
+    z-index: 1000; 
+    display: none;
+    width: 20vw;
+    max-width: 50vw;
+    align-items: center;
+}
+
+#cp-image-iframe {
+    width: 100%;
+    height: 30%;
+}
+
+.overlay-content {
+    background-color: var(--background-color-green);
+    color: rgb(29, 80, 29);
+}
+
+.cp-data {
+    color: black;
+}
+
+#cp-route-id-select #ideal-veh-type-select #cp-vehicle-id-select {
+    display: none;
+}
+
+/* Cluster Overlay */
+#cluster-overlay {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    background-color: var(--background-color-green);
+    z-index: 1000; 
+    display: none;
+    height: 250px;
+    width: 20vw;
+    align-items: center;
+}
+
+.cluster-overlay-content {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+/* RO Overlay */
+#ro-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--background-color-green);
+    z-index: 1000; 
+    display: none;
+    align-items: center;
+}
+
+.ro-data {
+    color: black;
+}
+
+.ro-overlay-row-item {
+    padding: 2px;
+    display: flex;
+    flex: 0 2 50%;
+    flex-direction: row;
+    margin-bottom: 2px;
+}

@@ -1,0 +1,105 @@
+@import url('../app_variables.css');
+
+#navbar-buttons-container {
+    justify-content: space-evenly;
+    row-gap: 10px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    position: sticky;
+    top: 60px;
+    background-color: var(--background-color-green);
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+#guide-sections-container {
+    height: calc(100% - 70px);
+    overflow-y: scroll;
+}
+
+#guide-sections-container::-webkit-scrollbar {
+    width: 0;
+}
+
+.guide-section {
+    background-color: var(--background-color-green);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    height: auto;
+}
+
+.guide-section-top-row {
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+    background-color: var(--background-color-green);
+    padding-bottom: 10px;
+}
+
+.guide-section-title {
+    padding-top: 10px;
+    margin-left: 20px;
+    font-size: x-large;
+    font-weight: 700;
+    color: var(--text-color-black);
+}
+
+.guide-section-subtitle {
+    padding-top: 10px;
+    margin-left: 20px;
+    font-size: large;
+    font-weight: 500;
+    color: var(--text-color-black);
+}
+
+.guide-section-content {
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.guide-section-content-text {
+    font-size: large;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+}
+
+.centered-image {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--background-color-dark-green);
+    margin-bottom: 10px;
+}
+
+.centered-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.overlay-top-btn {
+    padding: 5px;
+    padding-top: 0px;
+    margin: -16px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.btn-overlay-edit {
+    background-color: #66ff00;
+    border-radius: 5px;
+}
+
+.btn-overlay-delete {
+    background-color: #ff5a5a;
+}
+
+.btn-close-overlay {
+    background-color: #636363;
+}

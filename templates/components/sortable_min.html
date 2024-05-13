@@ -1,0 +1,116 @@
+<!-- <style>
+.list-group-item.active{border-bottom:3px solid black;}
+</style> -->
+
+<div id="app" class="row">
+
+<div id="routeButtons" class="col-md-12">
+
+</div>
+
+<div class="col-md-12">
+  <select class="form-select form-select-sm" style="width:20vw">
+  <option selected>Select Vehicle</option>
+  <option value="1">XE5592G</option>
+  <option value="2">XE6015F</option>
+  <option value="3">XE6059G</option>
+</select>
+</div>
+
+<div class="col-md-6 container-fluid mb-1" style="height:73vh;overflow-y:auto;scrollbar-width:none;">
+  <div id="routeList" class="list-group" style="height:73vh;width:20vw">
+    <span id="routeListName"><b>Vehicle</b></span>
+    <div class='list-group-item'>7:22<br/>163  STIRLING ROAD<br/>1500kg</div>
+    <div class='list-group-item'>7:43<br/>166 STIRLING ROAD<br/>3500kg</div>
+    <div class='list-group-item'>8:6<br/>143 - 150 MEI LING STREET (special equipment for CRC)<br/>4250kg</div>
+    <div class='list-group-item'>8:28<br/>580 - 590 STIRLING ROAD<br/>5000kg</div>
+    <div class='list-group-item'>8:36<br/>22A QUEENSWAY Special Ops<br/>6500kg</div>
+    <div class='list-group-item'>8:41<br/>260 - 264 QUEENSWAY<br/>6740kg</div>
+    <div class='list-group-item'>8:46<br/>358 - 360 ALEXANDRA ROAD Shell & Caltex<br/>6980kg</div>
+    <div class='list-group-item'>8:51<br/>57 DAWSON RD Dawson Place<br/>7980kg</div>
+    <div class='list-group-item'>9:11<br/>59 STRATHMORE AVE<br/>8280kg</div>
+    <div class='list-group-item'>9:15<br/>58 STRATHMORE AVE<br/>8580kg</div>
+    <div class='list-group-item'>9:19<br/>60 STRATHMORE AVE<br/>8880kg</div>
+    <div class='list-group-item'>9:24<br/>61B STRATHMORE AVE<br/>9180kg</div>
+    <div class='list-group-item'>9:28<br/>61C STRATHMORE AVE<br/>9480kg</div>
+    <div class='list-group-item'>9:32<br/>61A STRATHMORE AVE<br/>9780kg</div>
+    <div class='list-group-item'>9:36<br/>62B STRATHMORE AVE<br/>10080kg</div>
+    <div class='list-group-item'>9:40<br/>86 DAWSON RD<br/>10380kg</div>
+    <div class='list-group-item'>9:42<br/>88 DAWSON RD<br/>10680kg</div>
+    <div class='list-group-item'>9:44<br/>87 DAWSON RD<br/>10980kg</div>
+    <div class='list-group-item'>9:46<br/>85 DAWSON RD<br/>11280kg</div>
+    <div class='list-group-item'>9:48<br/>78 DAWSON RD<br/>11580kg</div>
+    <div class='list-group-item'>9:52<br/>79 DAWSON RD<br/>11880kg</div>
+    <div class='list-group-item'>9:57<br/>62A STRATHMORE AVE<br/>12180kg</div>
+    <div class='list-group-item'>10:2<br/>2 DUNDEE RD Church of Good Shepard<br/>12480kg</div>
+    <div class='list-group-item' style="background-color:black;color:white">IP</div>
+    <div class='list-group-item'>11:17<br/>12 - 14 JALAN BUKIT MERAH<br/>750kg</div>
+    <div class='list-group-item'>11:41<br/>100 REDHILL CLOSE Gan Eng Seng Pri<br/>990kg</div>
+    <div class='list-group-item'>11:45<br/>98T  REDHILL CLOSE Chinese Temple beside GES Pri<br/>1230kg</div>
+    <div class='list-group-item'>11:51<br/>1 HENDERSON ROAD Gan Eng Seng Sec<br/>1980kg</div>
+    <div class='list-group-item'>11:53<br/>1 HENDERSON ROAD Gan Eng Seng Sec<br/>2730kg</div>
+    <div class='list-group-item'>11:58<br/>81 REDHILL CLOSE<br/>2980kg</div>
+    <div class='list-group-item'>12:2<br/>84/85/86 REDHILL CLOSE  Redhill Market/FoodCenter/Shops<br/>4980kg</div>
+    <div class='list-group-item'>12:22<br/>82 REDHILL CLOSE<br/>5230kg</div>
+    <div class='list-group-item'>12:26<br/>83 REDHILL CLOSE<br/>5480kg</div>
+    <div class='list-group-item'>12:30<br/>88 REDHILL CLOSE<br/>5730kg</div>
+    <div class='list-group-item'>12:34<br/>87 REDHILL CLOSE<br/>5980kg</div>
+    <div class='list-group-item'>12:40<br/>70 REDHILL CLOSE<br/>6230kg</div>
+    <div class='list-group-item'>12:44<br/>68 REDHILL CLOSE<br/>6480kg</div>
+    <div class='list-group-item'>12:48<br/>69 REDHILL CLOSE<br/>6730kg</div>
+    <div class='list-group-item'>12:53<br/>74A REDHILL ROAD<br/>6980kg</div>
+    <div class='list-group-item'>12:57<br/>75A REDHILL ROAD<br/>7230kg</div>
+    <div class='list-group-item'>13:1<br/>75B REDHILL ROAD<br/>7630kg</div>
+    <div class='list-group-item'>13:5<br/>75C REDHILL ROAD<br/>8030kg</div>
+    <div class='list-group-item'>13:9<br/>76A REDHILL ROAD<br/>8280kg</div>
+    <div class='list-group-item'>13:13<br/>77A REDHILL ROAD<br/>8530kg</div>
+    <div class='list-group-item'>13:17<br/>73A REDHILL ROAD<br/>8780kg</div>
+    <div class='list-group-item'>13:23<br/>55 LENGKOK BAHRU<br/>10780kg</div>
+    <div class='list-group-item'>13:29<br/>63 - 64  LENGKOK BAHRU<br/>11530kg</div>
+    <div class='list-group-item'>13:41<br/>156B STIRLING ROAD<br/>12280kg</div>
+    <div class='list-group-item'>13:46<br/>181 - 184  STIRLING ROAD<br/>13780kg</div>
+    <div class='list-group-item'>14:6<br/>473 STIRLING ROAD Swimming Complex (Reno)<br/>14080kg</div>
+    <div class='list-group-item'>14:26<br/>48 STIRLING ROAD<br/>14830kg</div>
+    <div class='list-group-item'>14:37<br/>355 COMMENWEALTH AVE<br/>15080kg</div>
+    <div class='list-group-item'>14:42<br/>365  COMMENWEALTH AVE<br/>15830kg</div>
+    <div class='list-group-item' style="background-color:black;color:white">IP</div>
+  </div>
+</div>
+
+<div class="col-md-6 container-fluid mb-1" style="height:73vh;overflow-y:auto;scrollbar-width:none;">
+<span><b>Unassigned:</b></span>
+  <div id="unassignedList" class="list-group" style="height:73vh;width:20vw">
+    <div class="list-group-item tinted">1 JALAN KUKOH</div>
+    <div class="list-group-item tinted">52 CHIN SWEE RD Seacare Hotel</div>
+    <div class="list-group-item tinted">333 KRETA AYER RD</div>
+  </div> 
+</div>
+
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+</div>
+
+<script>
+Sortable.create(routeList, {
+  group: 'shared',
+  multiDrag: true,
+  selectedClass: "active",
+  animation: 150
+});
+
+Sortable.create(unassignedList, {
+  group: 'shared',
+  multiDrag: true,
+  selectedClass: "active",
+  animation: 150
+});
+
+
+
+</script>
+
+
+
+
+
+
+
