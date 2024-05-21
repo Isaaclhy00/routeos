@@ -8,4 +8,4 @@ tqdm
 geopandas==0.14.4
 shapely==2.0.4
 flask_dance==7.1.0
-gunicorn==20.1.0
+gunicorn
