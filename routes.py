@@ -1,6 +1,4 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, session, url_for
-# from optimization import solve
-import get_geotab_data
 import json
 import uuid
 import os
@@ -40,10 +38,6 @@ def edit_clusters():
     # preload data from db
     return render_template("edit_clusters.html")
 
-@main.route("/combine_csvs")
-def combine_csvs():
-    return render_template("combine_csvs.html")
-
 @main.route("/simple_optimization")
 def simple_optimization():
     # preload data from db
@@ -53,57 +47,6 @@ def simple_optimization():
 def run_optimization_original():
     # preload data from db
     return render_template("run_optimization_original.html")
-
-@main.route("/edit_optimization")
-def edit_optimization():
-    try:
-        run_number = request.args.get('run_number')
-
-        with open(run_number+".json") as f:
-            output = f.read()
-
-        print(run_number)
-    except:
-        output = None
-        print("no_run_number")
-        pass
-
-    return render_template("edit_optimization.html", opt_json = output, run_number=run_number)
-
-@main.route("/geotab")
-def geotab_iframe():
-    return render_template("geotab.html")
-
-@main.route("/solve", methods=["POST"])
-def solve_opt():
-    # run_number = str(uuid.uuid4())
-    now = datetime.now()
-    run_number = now.strftime("%Y%m%d")+"-test"
-    data = request.json
-    print(run_number)
-    with open('data.json', 'w') as f:
-        json.dump(data, f)
-        
-    output = solve_with_cluster(data)
-    with open(run_number+'.json', 'w') as f:
-        json.dump(output, f)
-
-    return jsonify({'run_number': run_number})
-
-
-@main.route("/run2")
-def run_optimization2():
-    # preload data from db
-    return render_template("run_optimization2.html")
-
-
-@main.route('/get_geotab_data/<vehicle_id>/<start_utc>/<end_utc>', methods=['GET'])
-def process_data(vehicle_id, start_utc, end_utc):
-    # Call the function from your class
-    trip_data = get_geotab_data.get_trip_and_cps(vehicle_id, start_utc, end_utc)
-    
-    # Return the processed data as JSON
-    return trip_data
 
 @main.route('/update_depots', methods=['POST'])
 def update_depots():
@@ -244,25 +187,3 @@ def reset_all_data_POST():
             destination_file.write(data)  # Write data into the destination file
 
     return redirect(url_for('main.reset_all_data'))
-
-@main.route('/fetch_route')
-def fetch_route():
-    latlon_str = request.args.get('latlonstr')
-    print(latlon_str)
-    url = "http://localhost:5001/route/v1/car/"+latlon_str+"?annotations=nodes&continue_straight=true&geometries=geojson&overview=full&alternatives=true"
-    # url = "http://osrm:5001/route/v1/car/"+latlon_str+"?annotations=nodes&continue_straight=true&geometries=geojson&overview=full&alternatives=true"
-    route_response = requests.get(url,verify=False)
-    if route_response.status_code == 200:
-        return route_response.json()
-    else:
-        print("find_route",route_response.status_code)
-        return None
-
-@main.route("/test")
-def run_test():
-    endpoint = "http://localhost:5001"
-    # endpoint = "http://osrm:5001"
-    querycar = OsrmQuery(endpoint, 'car')
-    route_response = querycar.find_route(1.2984382,103.8047524,1.2980271,103.8050503,u_turn_allowed=True)
-    route_response["routes"][0]["duration"]/60
-    return route_response

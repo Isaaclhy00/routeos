@@ -1,4 +1,4 @@
-var points_data =[
+var points_data = [
     {
         "id": 0,
         "House": "355",

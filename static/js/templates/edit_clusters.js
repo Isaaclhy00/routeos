@@ -17,12 +17,13 @@ $(document).ready(function () {
 
     // Save changes
     document.getElementById('btn-save-edit-clusters').addEventListener('click', function () {
-        clusters_data = [ ...clusters_data_copy ];
-        points_data = [ ...points_data_copy ];
-        updateClustersData();
-        updatePointsData(() => {
-            alert('Saved!');
-        });
+        // clusters_data = [ ...clusters_data_copy ];
+        // points_data = [ ...points_data_copy ];
+        // updateClustersData();
+        // updatePointsData(() => {
+        //     alert('Saved!');
+        // });
+        alert("Disabled for demo version!");
     });
 
     // // Auto Cluster Button

@@ -190,31 +190,32 @@ $(document).ready(function () {
 
     // Plot from Geotab
     document.getElementById('btn-plot-geotab-points').addEventListener('click', function() {
-        const loadingAnimation = document.querySelector('.loading-screen');
-        loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 0.6)';
-        loadingAnimation.style.display = 'flex';
+        alert("Disabled for demo version!");
+        // const loadingAnimation = document.querySelector('.loading-screen');
+        // loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 0.6)';
+        // loadingAnimation.style.display = 'flex';
 
-        // Extract input values
-        var vehicleId = document.getElementById("input-geotab-vehicle-id").value.toUpperCase();
-        var fromDate = document.getElementById("input-geotab-from-date").value;
-        var toDate = document.getElementById("input-geotab-to-date").value;
+        // // Extract input values
+        // var vehicleId = document.getElementById("input-geotab-vehicle-id").value.toUpperCase();
+        // var fromDate = document.getElementById("input-geotab-from-date").value;
+        // var toDate = document.getElementById("input-geotab-to-date").value;
         
-        // Make a GET request to the Flask endpoint
-        fetch(`/get_geotab_data/${vehicleId}/${fromDate}/${toDate}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            plotGeotabMarkersOnMap(data);
-            $('#geotab-modal').modal('hide');
-            loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 1)';
-            loadingAnimation.style.display = 'none';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 1)';
-            loadingAnimation.style.display = 'none';
-            alert('An error occurred while fetching data, please try again or try another date!');
-        });
+        // // Make a GET request to the Flask endpoint
+        // fetch(`/get_geotab_data/${vehicleId}/${fromDate}/${toDate}`)
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data);
+        //     plotGeotabMarkersOnMap(data);
+        //     $('#geotab-modal').modal('hide');
+        //     loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 1)';
+        //     loadingAnimation.style.display = 'none';
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        //     loadingAnimation.style.backgroundColor = 'rgba(68, 68, 68, 1)';
+        //     loadingAnimation.style.display = 'none';
+        //     alert('An error occurred while fetching data, please try again or try another date!');
+        // });
     });
 
     // Clear Upload Button
