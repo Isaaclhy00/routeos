@@ -15,15 +15,20 @@ TODO: Explain how other users and developers can contribute to make your code be
 
 # Table of Contents
 
-- [File Structure](#File-Structure)
-- [Data](#Data)
-- [Cards](#Cards)
+- [File Structure](#file-structure)
+- [Data](#data)
+- [Cards](#cards)
 - [Map](#map)
-- [Calendar](#Calendar)
-- [Home](#Home)
-- [Page 5](#page-5)
+- [Calendar](#calendar)
+- [Home](#home)
+- [Simple Optimization](#simple-optimization)
+- [Free Optimization](#free-optimization)
+- [Edit Fleet](#edit-fleet)
+- [Edit Locations](#edit-locations)
+- [Edit Clusters](#edit-clusters)
 
-# File Structre
+
+# File Structure
 ## optimization
 Conatins python code for running the solver
 
@@ -143,3 +148,82 @@ HTMl can be found templates/index.html.
 There is no Js or Css.
 
 # Simple Optimization
+## Overview
+Fucntions for Simple Optimization page found in /static/js/templates/simple_optimzation.js.
+HTML for Simple Optimization page found in /templates/simple_optimization.html.
+CSS for Simple Optimization page found in /static/css/simple_optimization.css.
+
+### Slider / Toggle/ Reset Buttons
+Functions to handle these components found at top of the js file
+
+### Route Cards
+This page uses its own version of Route Cards, different from the ones in /static/js/cards.js. 
+
+generateRunOptimizationRouteCardsBreak() generates Route Cards for the Break Route and Break Down scenarios. Main difference is that the "Break", "Optimize", and "Remove" buttons are added. Their onclick event listeners are also defined and attached here.
+
+
+generateRunOptimizationRouteCardsReshuffle() generates Route Cards for the Reshuffle scenario. Main difference is that the "Reshuffle" and "Remove" buttons are added. Their onlcick event listeners are also defined and attached here.
+
+moveRouteBreak() handles the logic for moving the cards during "Break Route" and "Break Down" scenarios. It handles the add and removing of Route IDs from the respective sets, the display of Route Cards in their respective containers, and updating of the count elements in the containers. 
+
+moveRouteReshuffle() handles the logic for moving the cards during "Reshuffle" scenario. It handles the add and removing of Route IDs from the respective sets, the display of Route Cards in their respective containers, and updating of the count elements in the containers.
+
+# Free Optimization
+## Overview
+Fucntions for Free Optimization page found in /static/js/templates/run_optimization_original.js.
+HTML for Free Optimization page found in /templates/run_optimization_original.html.
+CSS for Free Optimization page found in /static/css/run_optimization_original.css.
+
+### Slider / Toggle/ Reset Buttons
+Functions to handle these components found at top of the js file
+
+### Vehicles
+generateRunOptimizationVehicleCards() generates a special version of the Vehicle Cards used for this page only. Different information is shown and "Edit" and "Remove" buttons are added. The onclick event listeners for the card itself and for the buttons are defined and handled here. The showing of the modal to edit the vehicle is also handled here. 
+
+updateRunOptimizationVehicleCardContent() hanldes the updating of the Vehicle Cards. 
+
+removeVehicleToOptimize() addVehicleToOptimize() and handles the logic for updating the respective vheiclesInvolvedSet, moving the element to the new container, and updating the count elements.
+
+### Routes
+The Route Cards here are the same ones as from /static/js/cards.js.
+
+addRouteToOptimize() and removeRouteToOptimize() handles the logic for updating the respective routesToBreakSet, plotting/unplotting the points on the map and calls the addPointToOptimize() and removePointToOptimize() to handle adding/removing of all Collection Points belonging to that Route.
+
+### Points
+generateRunOptimizationCPCards() generates special Collection Point Cards for this page only. "Edit" and "Remove" buttons and their onclick event listeners are defined and attached here. Edit Point Modal is also handled here.
+
+updateRunOptimizationCPCardContent() updates the content of the Collection Point Cards.
+
+generatePointsInvolvedColumn() handles the dynamic genertion of the individual Route Collection Point columns on the right of the page.
+
+addPointToOptimize() and removePointToOptimize() handles the logic for updating the respective pointsToAssignSet and RoutesToBreakSet, moving of the Collection Point Cards, and updating the count elements. Future improvements: use display none and block instead of remove and append child so that the cards will always be in order after repeated adding and removing, take the simple optimization page for example. 
+
+updatePointsAndRoutesCount() handles the logic for updating the count element for the right most column.
+
+### Optimize Button
+Prepares the data to send to /solve, the respective routesToBreak, routesToOptimize, pointsToAssign, vehiclesInvolved are calculated here. Some additional helper data is also being appended and sent.
+
+
+# Edit Fleet
+## Overview
+Sample Fleet Excel for uploading can be found in /static/js/data/original_data/sample_fleet_excel.xlsx.
+
+Uses cards form /static/js/cards.js, each card type has its own event listners to handle editing, creation and deletion. The edit Routes Modal and edit Vehicle Modals have their own functions below to handle the dropdown menus.
+
+# Edit Locations
+## Overview 
+Sample Points Excel for uploading can be found in /static/js/data/original_data/sample_points_excel.xlsx.
+
+Map related functions are found in /static/js/mapLogic.js, and cards related functions are found in /static/js/cards.js.
+
+Geotab related functions can be found in geotab_analysis.py and get_geotab_data.py
+
+# Edit Clusters
+## Overview
+Map related functions are found in /static/js/mapLogic.js, and Collection Points Cards related functions are found in /static/js/cards.js. Cluster Cards are generated with generateClusterCards() at the bottom of the file.
+
+Dragover prevent default event listeners are required.
+
+Drag Drop event listeners are attached to the all-cp-cards-container, cluster-cp-cards-container, and each Cluster Card.
+
+Use addCPToCluster() and removeCPFromCluster(), but also copy the drag drop event listeners for the cleanup after adding and removing.
