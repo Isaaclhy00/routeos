@@ -7,9 +7,6 @@ from datetime import datetime
 
 import sys
 sys.path.append('./optimization')
-# from optimization.solve_no_clusters import solve_nocluster
-from optimization.solve_with_clusters import solve_with_cluster
-from optimization.query_osrm import OsrmQuery
 
 # Create a Blueprint object to define routes
 main = Blueprint('main', __name__)
