@@ -1,6 +1,6 @@
 var vehicles_data = [
     {"id" : 0,
-    "Name" : "XE6239D",
+    "Name" : "XE1111A",
     "Vehicle_Type" : 2,
     "Route_ID" : 0,
     "Max_Trips" : 3,
@@ -14,7 +14,7 @@ var vehicles_data = [
     "End_Time" : "00:00"
     },
     {"id" : 1,
-     "Name" : "XE5992T",
+     "Name" : "XE2222B",
      "Vehicle_Type" : 1,
      "Route_ID" : 1,
      "Max_Trips" : 2,
@@ -28,7 +28,7 @@ var vehicles_data = [
      "End_Time" : "00:00"
     },
     {"id" : 2,
-     "Name" : "XE5596D",
+     "Name" : "XE3333C",
      "Vehicle_Type" : 1,
      "Route_ID" : 2,
      "Max_Trips" : 3,
@@ -42,7 +42,7 @@ var vehicles_data = [
      "End_Time" : "00:00"
     },
     {"id" : 3,
-     "Name" : "XE5988G",
+     "Name" : "XE4444D",
      "Vehicle_Type" : 1,
      "Route_ID" : 3,
      "Max_Trips" : 3,
@@ -56,7 +56,7 @@ var vehicles_data = [
      "End_Time" : "00:00"
     },
     {"id" : 4,
-     "Name" : "XE6059G",
+     "Name" : "XE5555E",
      "Vehicle_Type" : 2,
      "Route_ID" : 4,
      "Max_Trips" : 3,
@@ -70,7 +70,7 @@ var vehicles_data = [
      "End_Time" : "00:00"
     },
     {"id" : 5,
-     "Name" : "XE6193B",
+     "Name" : "XE6666F",
      "Vehicle_Type" : 2,
      "Route_ID" : 5,
      "Max_Trips" : 3,
@@ -84,7 +84,7 @@ var vehicles_data = [
      "End_Time" : "00:00"
     },
     {"id" : 6,
-     "Name" : "XE6015H",
+     "Name" : "XE7777G",
      "Vehicle_Type" : 1,
      "Route_ID" : 6,
      "Max_Trips" : 3,
@@ -98,7 +98,7 @@ var vehicles_data = [
      "End_Time" : "00:00"
     },
     {"id" : 7,
-     "Name" : "XE6131E",
+     "Name" : "XE8888H",
      "Vehicle_Type" : 2,
      "Route_ID" : 7,
      "Max_Trips" : 3,
@@ -112,7 +112,7 @@ var vehicles_data = [
      "End_Time" : "00:00"
     },
     {"id" : 8,
-     "Name" : "XE6350P",
+     "Name" : "XE9999J",
      "Vehicle_Type" : 2,
      "Route_ID" : 8,
      "Max_Trips" : 3,
