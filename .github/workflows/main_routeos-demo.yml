@@ -33,7 +33,7 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip . -x "venv/*" ".git/*" ".github/*"
+        run: zip release.zip ./* -r 
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
@@ -41,7 +41,6 @@ jobs:
           name: python-app
           path: |
             release.zip
-            !venv/
 
   deploy:
     runs-on: ubuntu-latest
